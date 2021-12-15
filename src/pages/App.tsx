@@ -17,13 +17,25 @@ import { RedirectPathToSwapOnly } from './Swap/redirects'
 import Menu from '../components/Menu'
 import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
 
+import background_logo from 'src/uikit/widgets/Menu/icons/images/donk_transparent.png'
+
+import Casino from './ComingSoonCasino'
+import Mine from './ComingSoonMine'
+import { HomePage } from './Home'
+
+
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
-  background: linear-gradient(90deg, #15012e 0%, #360451 10%, #3f067d 50%, #360451 90%, #1d012e 100%);
-  // background: linear-gradient(#8314be, #3c02e6 100%);
+
+background: #232526;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
 `
 
 const BodyWrapper = styled.div`
@@ -40,6 +52,14 @@ const BodyWrapper = styled.div`
   background-repeat: no-repeat;
   background-position: bottom 24px center;
   background-size: 90%;
+
+
+
+
+
+
+
+
   
 
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -47,7 +67,7 @@ const BodyWrapper = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    // background-image: url('/images/arch-light.svg');
+    background-video: url('/video/flying_poker.mp4');
     background-repeat: no-repeat;
     background-position: center 420px, 10% 230px, 90% 230px;
     background-size: contain, 266px, 266px;
@@ -70,16 +90,26 @@ export default function App() {
           <Menu>
             <BodyWrapper>
               <Popups />
-              {/* <div className="relative h-full w-swap" id="donkLogo">
+              <div className="relative h-full w-swap" id="donkLogo">
+                <img
+                  src="/og.png"
+                  style={{ width: '120px', height: '120px', position: 'absolute', right: '5rem', top: -30, transform: 'scaleX(-1)' }}
+                />
+              </div>
+              <h3 id="dex-title-under-logo" style={{fontSize: '30px'}}>Donkey King Finance</h3>
+              <div className="relative h-full w-swap" id="donkLogo">
                 <img
                   src="/Strong+DonkeySwap.webp"
                   style={{ position: 'absolute', right: '-16rem', top: 45, transform: 'scaleX(-1)' }}
                 />
                 <img src="/Strong+DonkeySwap.webp" style={{ position: 'absolute', left: '-16rem', top: 45 }} />
-              </div> */}
+              </div>
               <Web3ReactManager>
                 <Switch>
+                  <Route exact path="/home" component={HomePage} />
                   <Route exact path="/donk-seal" component={DonkSeal} />
+                  <Route exact path="/casino" component={Casino} />
+                  <Route exact path="/mine" component={Mine} />
                   <Route exact strict path="/swap" component={Swap} />
                   <Route exact strict path="/find" component={PoolFinder} />
                   <Route exact strict path="/pool" component={Pool} />
@@ -97,6 +127,9 @@ export default function App() {
             </BodyWrapper>
           </Menu>
         </AppWrapper>
+        <div className="copyrights">
+          <p className="col">Copyright &copy; 2021. All Rights Reserved: Donkey King Finance</p>
+        </div>
       </HashRouter>
     </Suspense>
   )
