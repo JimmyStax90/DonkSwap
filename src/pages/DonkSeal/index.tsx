@@ -95,28 +95,6 @@ export default function DonkSeal() {
             summary: 'Crypto Jackpot is the first decentralized global lottery. They aim to become the biggest cryptocurrency giveaway token on the BSC network. The $CJP tokenomics supply the jackpot pool with every transaction. Crypto Jackpot is a BEP-20 token on the Binance Smart Chain with a max supply of 2 billion tokens. The core use case is to reward holders through multiple giveaways that are built into the $CJP contract.'
           },
           {
-            _id: '0x4492cA0AFF6D603e18Aea5075B49A5ff76b9Ea06',
-            coinName: 'Farmageddon  (FG)',
-            coinAddress: '0x4492cA0AFF6D603e18Aea5075B49A5ff76b9Ea06',
-            coinLogo:
-              'https://i.imgur.com/5AGI34Z.png',
-            coinWebsite: 'https://farmageddon.farm',
-            auditFile: 'https://8cbbe279-3c83-4cff-a3ee-23bb45499061.usrfiles.com/ugd/8cbbe2_311364b869d6495c9e1b4ae03c2d2618.pdf',
-            auditLogo: 'https://i.ibb.co/6WP1kML/flylogo.png',
-            summary: '$FG and $FRT tokens will be used to power a platform bringing the lucrative yet complicated process of yield farming to the masses. Farmageddon is simplifying the process of staking. After choosing the Farm you want to stake, you only need to enter the quantity of tokens you want staked - leave the rest to them. As your harvest starts growing, you will be able to compound your rewards back into the farm with one simple click! Not only are they simplifying the staking process, they are also bringing yield farms to one site. DonkSwap farms and PancakeSwap Farms are currently available on their platform.'
-          },
-          {
-            _id: '0xd51237a6f3219d186f0c8d8dd957b1bcb3ce5d48',
-            coinName: 'Fertilizer   (FRT)',
-            coinAddress: '0xd51237a6f3219d186f0c8d8dd957b1bcb3ce5d48',
-            coinLogo:
-              'https://i.ibb.co/6NYCfDT/photo1633193176.jpg',
-            coinWebsite: 'https://farmageddon.farm',
-            auditFile: 'https://8cbbe279-3c83-4cff-a3ee-23bb45499061.usrfiles.com/ugd/8cbbe2_311364b869d6495c9e1b4ae03c2d2618.pdf',
-            auditLogo: 'https://i.ibb.co/6WP1kML/flylogo.png',
-            summary: '$FG and $FRT tokens will be used to power a platform bringing the lucrative yet complicated process of yield farming to the masses. Farmageddon is simplifying the process of staking. After choosing the Farm you want to stake, you only need to enter the quantity of tokens you want staked - leave the rest to them. As your harvest starts growing, you will be able to compound your rewards back into the farm with one simple click! Not only are they simplifying the staking process, they are also bringing yield farms to one site. DonkSwap farms and PancakeSwap Farms are currently available on their platform.'
-          },
-          {
             _id: '0x80dc7bd1328f5e48e8e22884169ba46f9279201b',
             coinName: 'Flappy Doge  (FLPD)',
             coinAddress: '0x80dc7bd1328f5e48e8e22884169ba46f9279201b',
