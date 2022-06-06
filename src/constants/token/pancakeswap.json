@@ -42,22 +42,6 @@
       "logoURI": "https://i.ibb.co/xjrYngM/Crypto-Jackpot-removebg-preview.png"
     },
     {
-      "name": "Farmageddon Token",
-      "symbol": "FG",
-      "address": "0x4492ca0aff6d603e18aea5075b49a5ff76b9ea06",
-      "chainId": 56,
-      "decimals": 9,
-      "logoURI": "https://DONKSWAP.COM/images/coins/fg.png"
-    },
-    {
-      "name": "FERTILIZER TOKEN",
-      "symbol": "FRT",
-      "address": "0xd51237a6f3219d186f0c8d8dd957b1bcb3ce5d48",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://i.ibb.co/6NYCfDT/photo1633193176.jpg"
-    },
-    {
       "name": "Flappy Doge",
       "symbol": "FLPD",
       "address": "0x80dc7bd1328f5e48e8e22884169ba46f9279201b",
