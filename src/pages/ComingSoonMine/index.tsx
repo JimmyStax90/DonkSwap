@@ -168,16 +168,17 @@ export default function Mine() {
         <form className="stake-form">
           <h3 className="stake-title">Stake DONK-LP</h3>
           <div className="input-div">
-            <input disabled={!account} onChange={depositInput} value={depositinputamount} type="number" step='any' placeholder='0.0' className="deposit-input" />
+            <div className='deposit-input-container'>
+              <h6 className='user-bal'>
+                Balance: {balance ? ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3) : '0.0'}
+              </h6>
+              <span className={`max-btn ${allowance === '0' ? 'max-btn-disabled':''}`} onClick={() => account && allowance !== '0'? handleClickMax():null}>Max</span>
+              <input disabled={!account} onChange={depositInput} value={depositinputamount} type="number" step='any' placeholder='0.0' className="deposit-input" />
+            </div>
             <div className="increment-div">
               <button disabled={!account} onClick={incrementDepositUp} className="increment-plus">+</button>
               <button disabled={!account} onClick={decrementDepositDown} className="increment-minus">-</button>
             </div>
-          </div>
-          <div>
-            <h6 className = {`max-value ${allowance === '0' ? 'pointer-disabled':''}`} onClick={() => account? handleClickMax:null}>
-              Max:{balance ? ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3) : 0}
-            </h6>
           </div>
           {
             account?
@@ -187,7 +188,14 @@ export default function Mine() {
                 <button className='stake-btn' onClick={handleClickReStake}>ReStake</button>
               </div>
                 : <button className="stake-btn" onClick={handleClickApprove}>Approve</button>
-              : <ConnectWalletButton className="stake-btn" style={{'transform': 'scale(.95)'}}/>
+              : <ConnectWalletButton style={{
+                  'width': '170px',
+                  'height': '35px',
+                  'borderRadius': '10px',
+                  'color': 'white',
+                  'backgroundColor': '#9d70c3;',
+                  'boxShadow': '3px 3px 1px #414345'
+                }}/>
           }
         </form>
 
@@ -204,7 +212,14 @@ export default function Mine() {
           {
             account?
               <button className={`stake-btn ${stakedbalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || stakedbalance?.toString() === '0'} onClick={handleClickWithdraw}>Withdraw</button>
-              : <ConnectWalletButton className="stake-btn" style={{'transform': 'scale(.95)'}}/>
+              : <ConnectWalletButton style={{
+                  'width': '170px',
+                  'height': '35px',
+                  'borderRadius': '10px',
+                  'color': 'white',
+                  'backgroundColor': '#9d70c3;',
+                  'boxShadow': '3px 3px 1px #414345'
+                }}/>
             }
         </form>
 
@@ -220,7 +235,14 @@ export default function Mine() {
           {
             account?
               <button className={`stake-btn ${earnedBalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || earnedBalance?.toString() === '0'} onClick={handleClickClaim}>Claim</button>
-              : <ConnectWalletButton className="stake-btn" style={{'transform': 'scale(.95)'}}/>
+              : <ConnectWalletButton style={{
+                'width': '170px',
+                'height': '35px',
+                'borderRadius': '10px',
+                'color': 'white',
+                'backgroundColor': '#9d70c3;',
+                'boxShadow': '3px 3px 1px #414345'
+              }}/>
             }
         </form>
       </div>
