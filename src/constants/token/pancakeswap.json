@@ -26,6 +26,14 @@
       "logoURI": "https://i.ibb.co/XJfSDMX/czf-logo.png"
     },
     {
+      "name": "CZUSD Token",
+      "symbol": "CZUSD",
+      "address": "0xE68b79e51bf826534Ff37AA9CeE71a3842ee9c70",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/Z6k35k5/CZUSD.png"
+    },
+    {
       "name": "CryoGen Token",
       "symbol": "CRYOGEN",
       "address": "0x6a73a99fac60c265863307c5a40abf32f0a040ac",
