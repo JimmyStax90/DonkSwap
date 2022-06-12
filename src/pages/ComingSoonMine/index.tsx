@@ -6,6 +6,9 @@ import { ethers } from "ethers"
 import useERC20 from "hooks/useERC20";
 import { useActiveWeb3React } from '../../hooks/index';
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import Slider from "../../components/Slider";
+import { Button, Flex, Text } from '../../uikit'
+import useI18n from 'hooks/useI18n'
 
 
 export default function Mine() {
@@ -18,7 +21,8 @@ export default function Mine() {
   const { allowance, approve, balance } = useERC20();
   const total = Number(ethers.utils.formatEther(totalStakedBalance?totalStakedBalance:0));
   const rate = Number(ethers.utils.formatUnits(rewardRate?rewardRate:0,9));
-  const apr = total?(rate * (3600 * 24 * 365 * 100) / total).toFixed(0):total;
+  const apr = total?(rate).toFixed(3):total;
+  const TranslateString = useI18n()
   
   console.log("rewardRatetemp---->", rate);
   console.log("total------>", total);
@@ -165,7 +169,7 @@ export default function Mine() {
       </div>
 
       < div className="stake-body">
-        <form className="stake-form">
+        <form className="stake-form" style={{ height: '220px' }} >
           <h3 className="stake-title">Stake DONK-LP</h3>
           <div className="input-div">
             <div className='deposit-input-container'>
@@ -199,7 +203,7 @@ export default function Mine() {
           }
         </form>
 
-        <form className="stake-form">
+        {/* <form className="stake-form" style={{ height: '220px' }} >
           <h3 className="stake-title">Withdraw Staked LP</h3>
           <div className="input-div">
             <input disabled={!account} onChange={withdrawalInput} value={withdrawalinputamount} type="number" placeholder="1-100" className="withdrawal-input" />
@@ -209,6 +213,49 @@ export default function Mine() {
               <button disabled={!account} onClick={decrementWithdrawalDown} className="increment-minus">-</button>
             </div>
           </div>
+        </form> */}
+
+        <form className="stake-form" style={{ height: '220px' }}>
+          <h3 className="stake-title">Withdraw Staked LP</h3>
+          {/* Slider inserted */}
+          <Flex justifyContent="start">
+            <Text fontSize="20px">{withdrawalinputamount}%</Text>
+          </Flex>
+          <>
+            <Flex mb="8px">
+              <Slider value={withdrawalinputamount} onChange={setWithdrawalInputAmount} />
+            </Flex>
+            <Flex justifyContent="space-around">
+              <Button
+                variant="tertiary"
+                scale="sm"
+                onClick={() => setWithdrawalInputAmount(25)}
+              >
+                25%
+              </Button>
+              <Button
+                variant="tertiary"
+                scale="sm"
+                onClick={() => setWithdrawalInputAmount(50)}
+              >
+                50%
+              </Button>
+              <Button
+                variant="tertiary"
+                scale="sm"
+                onClick={() => setWithdrawalInputAmount(75)}
+              >
+                75%
+              </Button>
+              <Button
+                variant="tertiary"
+                scale="sm"
+                onClick={() => setWithdrawalInputAmount(100)}
+              >
+                {TranslateString(166, 'Max')}
+              </Button>
+            </Flex>
+          </>
           {
             account?
               <button className={`stake-btn ${stakedbalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || stakedbalance?.toString() === '0'} onClick={handleClickWithdraw}>Withdraw</button>
@@ -220,10 +267,10 @@ export default function Mine() {
                   'backgroundColor': '#9d70c3;',
                   'boxShadow': '3px 3px 1px #414345'
                 }}/>
-            }
+          }
         </form>
 
-        <form className="stake-form">
+        <form className="stake-form" style={{ height: '220px' }} >
           <h3 className="stake-title">Claim Earned DST</h3>
           <div className="input-div">
             <input disabled={!account} onChange={ClaimInput} value={claiminputamount} type="number" placeholder="0" className="withdrawal-input" />

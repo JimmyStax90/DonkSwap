@@ -73,6 +73,17 @@ export default function DonkSeal() {
             summary: 'CZodiacs defi dapps empower the community to earn high interest with CZF (Chinese Zodiac Farming Token). These rates are created through a combination of defi game theory and protocol revenue generated from assets held by the protocol.'
           },
           {
+            _id: '0xE68b79e51bf826534Ff37AA9CeE71a3842ee9c70',
+            coinName: 'CZUSD Token (CZUSD)',
+            coinAddress: '0xE68b79e51bf826534Ff37AA9CeE71a3842ee9c70',
+            coinLogo:
+              'https://i.ibb.co/Z6k35k5/CZUSD.png',
+            coinWebsite: 'https://czodiac.com/',
+            auditFile: '',
+            auditLogo: '',
+            summary: 'CZUSD is backed by a basket of stable USD assets which support its peg to $1.'
+          },
+          {
             _id: '0x6a73a99fac60c265863307c5a40abf32f0a040ac',
             coinName: 'CryoGen  (CRYOGEN)',
             coinAddress: '0x6a73a99fac60c265863307c5a40abf32f0a040ac',
