@@ -169,7 +169,7 @@ export default function Mine() {
       </div>
 
       < div className="stake-body">
-        <form className="stake-form" style={{ height: '220px' }} >
+        <form className="stake-form">
           <h3 className="stake-title">Stake DONK-LP</h3>
           <div className="input-div">
             <div className='deposit-input-container'>
@@ -203,19 +203,7 @@ export default function Mine() {
           }
         </form>
 
-        {/* <form className="stake-form" style={{ height: '220px' }} >
-          <h3 className="stake-title">Withdraw Staked LP</h3>
-          <div className="input-div">
-            <input disabled={!account} onChange={withdrawalInput} value={withdrawalinputamount} type="number" placeholder="1-100" className="withdrawal-input" />
-            <span className="percent-symbol">%</span>
-            <div className="increment-div">
-              <button disabled={!account} onClick={incrementWithdrwalUp} className="increment-plus">+</button>
-              <button disabled={!account} onClick={decrementWithdrawalDown} className="increment-minus">-</button>
-            </div>
-          </div>
-        </form> */}
-
-        <form className="stake-form" style={{ height: '220px' }}>
+        <form className="stake-form">
           <h3 className="stake-title">Withdraw Staked LP</h3>
           {/* Slider inserted */}
           <Flex justifyContent="start">
@@ -270,7 +258,7 @@ export default function Mine() {
           }
         </form>
 
-        <form className="stake-form" style={{ height: '220px' }} >
+        <form className="stake-form">
           <h3 className="stake-title">Claim Earned DST</h3>
           <div className="input-div">
             <input disabled={!account} onChange={ClaimInput} value={claiminputamount} type="number" placeholder="0" className="withdrawal-input" />
