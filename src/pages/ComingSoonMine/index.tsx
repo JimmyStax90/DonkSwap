@@ -48,6 +48,7 @@ export default function Mine() {
   const handleClickClaim = () => {
     claimReward(ethers.utils.parseEther(claiminputamount.toString()))
   }
+  
   /*======================= DEPOSIT ===================================*/
   /*======================= DEPOSIT ===================================*/
   /*======================= DEPOSIT ===================================*/
@@ -70,33 +71,10 @@ export default function Mine() {
   /*======================= WITHDRAWAL===================================*/
   /*======================= WITHDRAWAL===================================*/
 
-  const withdrawalInput = (e) => {
-    const userInputasInt = parseInt(e.target.value)
-    if (userInputasInt > 0 && userInputasInt <= 100)
-    {
-      setWithdrawalInputAmount(userInputasInt);
-    } else if (userInputasInt > 100) {
-      setWithdrawalInputAmount(100);
-    } else {
-      setWithdrawalInputAmount(1);
-    }
-  }
-  const incrementWithdrwalUp = () => {
-    if (withdrawalinputamount < 100)
-    {
-      setWithdrawalInputAmount(withdrawalinputamount + 1);
-    }
-  }
-  const decrementWithdrawalDown = () => {
-    if (withdrawalinputamount <= 1) {
-      setWithdrawalInputAmount(1);
-    } else {
-      setWithdrawalInputAmount(withdrawalinputamount - 1);
-    }
-  }
   const handleClickWithdraw = () => {
     withdraw(withdrawalinputamount.toString())
   }
+
   /*==========================================================*/
   /*==========================================================*/
 
@@ -205,7 +183,6 @@ export default function Mine() {
 
         <form className="stake-form">
           <h3 className="stake-title">Withdraw Staked LP</h3>
-          {/* Slider inserted */}
           <Flex justifyContent="start">
             <Text fontSize="20px">{withdrawalinputamount}%</Text>
           </Flex>
