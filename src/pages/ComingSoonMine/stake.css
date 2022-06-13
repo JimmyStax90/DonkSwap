@@ -6,6 +6,19 @@
     z-index: -1;
     box-shadow: inset 2px 1px 18px rgba(140, 76, 170, 0.279);
 }
+
+.overlay{
+    overflow: hidden;
+    display: none;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+}
+
 .stake-body-whole{
     width: 100%;
     display: flex;
@@ -168,14 +181,32 @@
     justify-self: flex-end;
 }
 
-.max-btn {
-    font-weight: bold;
+.max-dropdown {
     position: absolute;
     bottom: 25%;
     right: 2%;
+}
+
+.max-dropdown-content {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    padding: 0 5px;
+    line-height: 1.5;
+    margin-top: -4px;
+    margin-left: -5px;
+    background-color: hsla(0, 0%, 100%,.8);
+    z-index: 9999;
+    overflow-y: auto;
+    overflow-x: visible;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.max-btn {
+    font-weight: bold;
     color: #753fa4;
-    justify-self: flex-end;
-    justify-content: flex-end;
     cursor: pointer;
     user-select: none;
 }
@@ -190,7 +221,7 @@
 }
 
 .withdrawal-input{
-    width: 300px;
+    width: 100%;
     height: 40px;
     padding-left: 10px;
     border-radius: 8px;
