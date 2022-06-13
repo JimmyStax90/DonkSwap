@@ -242,17 +242,22 @@
     width: 150px;
     height: 35px;
     border-radius: 10px;
+    font-size: .9rem;
     color: white;
     background-color: #753fa4;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.178);
+    transition: none;
 }
 .btn-disabled, button:disabled {
-    cursor: not-allowed !important;
+    cursor: default !important;
     background-color:#414345;
 }
 .stake-btn:hover:enabled{
     cursor: pointer;
     background-color: #8d6caa;
+}
+.stake-btn:active:enabled{
+    transform: scale(.98);
 }
 
 

@@ -11,7 +11,7 @@ import useI18n from 'hooks/useI18n';
 
 export default function Mine() {
   const { account } = useActiveWeb3React();
-  const [depositinputamount, setDepositInputAmount] = useState(0.0);
+  const [depositinputamount, setDepositInputAmount] = useState(0.00);
   const [withdrawalinputamount, setWithdrawalInputAmount] = useState(1);
   const [claiminputamount, setClaimInputAmount] = useState(0);
   const [errormessage, setErrorMessage] = useState('')
@@ -24,6 +24,9 @@ export default function Mine() {
   const maxDropdownContentDeposit = useRef<HTMLDivElement>();
   const maxDropdownContentClaim = useRef<HTMLDivElement>();
   const overlay = useRef<HTMLDivElement>();
+  const isUserApproved = allowance !== '0';
+  const hasStakedBal = stakedbalance?.toString() !== '0';
+  const hasEarnedBal = earnedBalance?.toString() !== '0';
 
   console.log("rewardRatetemp---->", rate);
   console.log("total------>", total);
@@ -39,10 +42,10 @@ export default function Mine() {
     setClaimInputAmount(claiminputamount + 1);
   }
   const decrementClaimDown = () => {
-    if (claiminputamount <= 0) {
+    if (claiminputamount - 1 < 0) {
       setClaimInputAmount(0);
     } else {
-      setClaimInputAmount(claiminputamount - 1);
+      setClaimInputAmount(parseInt((claiminputamount - 1).toFixed(0)));
     }
   }
 
@@ -61,10 +64,10 @@ export default function Mine() {
     setDepositInputAmount(depositinputamount + 1);
   }
   const decrementDepositDown = () => {
-    if (depositinputamount <= 0) {
-      setDepositInputAmount(0.0);
+    if (depositinputamount - 1 < 0) {
+      setDepositInputAmount(0.00);
     } else {
-      setDepositInputAmount(depositinputamount - 1);
+      setDepositInputAmount(parseInt((depositinputamount - 1).toFixed(2)));
     }
   }
 
@@ -199,19 +202,21 @@ export default function Mine() {
               <h6 className='user-bal'>
                 Balance:  {
                             account?
-                              balance?
-                                ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3)
-                              :'0.0'
+                              isUserApproved?
+                                balance?
+                                  ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3)
+                                :'0.0'
+                              :'Approve below to view'
                             : 'Unlock wallet to view'
                           }
               </h6>
               <div className='max-dropdown'>
-                <span className={`max-btn ${allowance === '0' ? 'max-btn-disabled':''}`} onClick={() => account && allowance !== '0'? handleClickMaxDepositDropdown():null}>Max</span>
+                <span className={`max-btn ${!account ? 'max-btn-disabled':''}`} onClick={() => account ? handleClickMaxDepositDropdown():null}>Max</span>
                 <div ref={maxDropdownContentDeposit} className="max-dropdown-content">
-                  <span className="max-btn" onClick={() => account && allowance !== '0'? handleClickMaxDeposit(100):null}>Max</span>
-                  <span className="max-btn" onClick={() => account && allowance !== '0'? handleClickMaxDeposit(75):null}>75%</span>
-                  <span className="max-btn" onClick={() => account && allowance !== '0'? handleClickMaxDeposit(50):null}>50%</span>
-                  <span className="max-btn" onClick={() => account && allowance !== '0'? handleClickMaxDeposit(25):null}>25%</span>
+                  <span className="max-btn" onClick={() => account ? handleClickMaxDeposit(100):null}>Max</span>
+                  <span className="max-btn" onClick={() => account ? handleClickMaxDeposit(75):null}>75%</span>
+                  <span className="max-btn" onClick={() => account ? handleClickMaxDeposit(50):null}>50%</span>
+                  <span className="max-btn" onClick={() => account ? handleClickMaxDeposit(25):null}>25%</span>
                 </div>
                 <div className="overlay" ref={overlay} onClick={handleClickOverlay}></div>
               </div>
@@ -224,7 +229,7 @@ export default function Mine() {
           </div>
           {
             account?
-              allowance !== '0' ?
+              isUserApproved?
               <div>
                 <button className='stake-btn' onClick={handleClickStake}>Stake</button>
                 <button className='stake-btn' onClick={handleClickReStake}>ReStake</button>
@@ -283,7 +288,7 @@ export default function Mine() {
           </Flex>
           {
             account?
-              <button className={`stake-btn ${stakedbalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || stakedbalance?.toString() === '0'} onClick={handleClickWithdraw}>Withdraw</button>
+              <button className={`stake-btn ${!hasStakedBal ? 'btn-disabled':''}`} disabled={!account || !hasStakedBal} onClick={handleClickWithdraw}>Withdraw</button>
               : <ConnectWalletButton style={{
                   width: '170px',
                   height: '35px',
@@ -301,12 +306,12 @@ export default function Mine() {
           <div className="input-div">
             <div className='deposit-input-container'>
               <div className='max-dropdown'>
-                <span className={`max-btn ${!earnedBalance || earnedBalance?.toString() === '0' ? 'max-btn-disabled':''}`} onClick={() => account && earnedBalance?.toString() !== '0'? handleClickMaxClaimDropdown():null}>Max</span>
+                <span className={`max-btn ${!earnedBalance ? 'max-btn-disabled':''}`} onClick={() => account ? handleClickMaxClaimDropdown():null}>Max</span>
                 <div ref={maxDropdownContentClaim} className="max-dropdown-content">
-                  <span className="max-btn" onClick={() => account && earnedBalance?.toString() !== '0'? handleClickMaxClaim(100):null}>Max</span>
-                  <span className="max-btn" onClick={() => account && earnedBalance?.toString() !== '0'? handleClickMaxClaim(75):null}>75%</span>
-                  <span className="max-btn" onClick={() => account && earnedBalance?.toString() !== '0'? handleClickMaxClaim(50):null}>50%</span>
-                  <span className="max-btn" onClick={() => account && earnedBalance?.toString() !== '0'? handleClickMaxClaim(25):null}>25%</span>
+                  <span className="max-btn" onClick={() => account ? handleClickMaxClaim(100):null}>Max</span>
+                  <span className="max-btn" onClick={() => account ? handleClickMaxClaim(75):null}>75%</span>
+                  <span className="max-btn" onClick={() => account ? handleClickMaxClaim(50):null}>50%</span>
+                  <span className="max-btn" onClick={() => account ? handleClickMaxClaim(25):null}>25%</span>
                 </div>
                 <div className="overlay" ref={overlay} onClick={handleClickOverlay}></div>
               </div>
@@ -319,7 +324,7 @@ export default function Mine() {
           </div>
           {
             account?
-              <button className={`stake-btn ${earnedBalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || earnedBalance?.toString() === '0'} onClick={handleClickClaim}>Claim</button>
+              <button className={`stake-btn ${!hasEarnedBal ? 'btn-disabled':''}`} disabled={!account || !hasEarnedBal} onClick={handleClickClaim}>Claim</button>
               : <ConnectWalletButton style={{
                 width: '170px',
                 height: '35px',
