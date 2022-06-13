@@ -146,7 +146,7 @@ export default function Mine() {
       </div>
 
       < div className="stake-body">
-        <form className="stake-form">
+        <div className="stake-form">
           <h3 className="stake-title">Stake DONK-LP</h3>
           <div className="input-div">
             <div className='deposit-input-container'>
@@ -184,9 +184,9 @@ export default function Mine() {
                   boxShadow: '3px 3px 1px #414345'
                 }}/>
           }
-        </form>
+        </div>
 
-        <form className="stake-form">
+        <div className="stake-form">
           <h3 className="stake-title">Withdraw Staked LP</h3>
           <Flex flexDirection={'column'} alignItems={'center'} width={.5}>
             <Text fontSize="20px">{withdrawalinputamount}%</Text>
@@ -239,9 +239,9 @@ export default function Mine() {
                   transform: 'scale(.95)'
                 }}/>
           }
-        </form>
+        </div>
 
-        <form className="stake-form">
+        <div className="stake-form">
           <h3 className="stake-title">Claim Earned DST</h3>
           <div className="input-div">
             <input disabled={!account} onChange={ClaimInput} value={claiminputamount} type="number" placeholder="0" className="withdrawal-input" />
@@ -262,7 +262,7 @@ export default function Mine() {
                 boxShadow: '3px 3px 1px #414345'
               }}/>
             }
-        </form>
+        </div>
       </div>
     </div>
   );
