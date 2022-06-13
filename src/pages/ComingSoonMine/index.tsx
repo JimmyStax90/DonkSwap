@@ -79,6 +79,10 @@ export default function Mine() {
     withdraw(withdrawalinputamount.toString())
   }
 
+  const withdrawalInput = (e) => {
+    setWithdrawalInputAmount(parseInt(e.target.value));
+  }
+
   /*==========================================================*/
   /*==========================================================*/
 
@@ -248,44 +252,10 @@ export default function Mine() {
 
         <div className="stake-form">
           <h3 className="stake-title">Withdraw Staked LP</h3>
-          <Flex flexDirection={'column'} alignItems={'center'} width={.5}>
-            <Text fontSize="20px">{withdrawalinputamount}%</Text>
-            <Slider min={1} size={20} value={withdrawalinputamount} onChange={setWithdrawalInputAmount} />
-            <Flex justifyContent="space-around" width={1} className='scale-btn-container'>
-              <Button
-                variant="tertiary"
-                scale="sm"
-                className="scale-btn"
-                onClick={() => setWithdrawalInputAmount(25)}
-              >
-                25%
-              </Button>
-              <Button
-                variant="tertiary"
-                scale="sm"
-                className="scale-btn"
-                onClick={() => setWithdrawalInputAmount(50)}
-              >
-                50%
-              </Button>
-              <Button
-                variant="tertiary"
-                scale="sm"
-                className="scale-btn"
-                onClick={() => setWithdrawalInputAmount(75)}
-              >
-                75%
-              </Button>
-              <Button
-                variant="tertiary"
-                scale="sm"
-                className="scale-btn"
-                onClick={() => setWithdrawalInputAmount(100)}
-              >
-                {TranslateString(166, 'Max')}
-              </Button>
-            </Flex>
-          </Flex>
+          <div className="input-div">
+            <input disabled={!account} onChange={withdrawalInput} value={withdrawalinputamount} type="number" min={0} max={100} placeholder="place input withdrawal %" className="withdrawal-input" />
+            <span className="percent-symbol">%</span>
+          </div>
           {
             account?
               <button className={`stake-btn ${!hasStakedBal ? 'btn-disabled':''}`} disabled={!account || !hasStakedBal} onClick={handleClickWithdraw}>Withdraw</button>
