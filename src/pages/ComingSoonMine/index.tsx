@@ -1,19 +1,19 @@
 import "./stake.css";
-import React, { useState, useRef, useEffect, } from 'react'
-import EmbedMine from "./embedMine";
+import React, { useState } from 'react'
 import useStaking from "../../hooks/useStaking";
 import { ethers } from "ethers"
 import useERC20 from "hooks/useERC20";
 import { useActiveWeb3React } from '../../hooks/index';
+import ConnectWalletButton from 'components/ConnectWalletButton';
 import Slider from "../../components/Slider";
-import { Button, Flex, Text } from '../../uikit'
-import useI18n from 'hooks/useI18n'
+import { Button, Flex, Text } from '../../uikit';
+import useI18n from 'hooks/useI18n';
 
 
 export default function Mine() {
   const { account } = useActiveWeb3React();
-  const [depositinputamount, setDepositInputAmount] = useState(0);
-  const [withdrawalinputamount, setWithdrawalInputAmount] = useState(0);
+  const [depositinputamount, setDepositInputAmount] = useState(0.0);
+  const [withdrawalinputamount, setWithdrawalInputAmount] = useState(1);
   const [claiminputamount, setClaimInputAmount] = useState(0);
   const [errormessage, setErrorMessage] = useState('')
   const { stakedbalance, earnedBalance, totalStakedBalance, totalRewards, rewardRate, stake,restake, withdraw, claimReward } = useStaking();
@@ -21,8 +21,8 @@ export default function Mine() {
   const total = Number(ethers.utils.formatEther(totalStakedBalance?totalStakedBalance:0));
   const rate = Number(ethers.utils.formatUnits(rewardRate?rewardRate:0,9));
   const apr = total?(rate).toFixed(3):total;
-  const TranslateString = useI18n()
-  
+  const TranslateString = useI18n();
+
   console.log("rewardRatetemp---->", rate);
   console.log("total------>", total);
   console.log("result---->", apr);
@@ -31,63 +31,49 @@ export default function Mine() {
   /*======================= ClaimReward ===================================*/
 
   const ClaimInput = (e) => {
-    setClaimInputAmount(e.target.value);
-    console.log(claiminputamount);
+    setClaimInputAmount(parseInt(e.target.value));
   }
   const incrementClaimUp = () => {
     setClaimInputAmount(claiminputamount + 1);
-    console.log(claiminputamount);
   }
   const decrementClaimDown = () => {
-    setClaimInputAmount(claiminputamount - 1);
-    console.log(claiminputamount);
+    if (claiminputamount <= 0) {
+      setClaimInputAmount(0);
+    } else {
+      setClaimInputAmount(claiminputamount - 1);
+    }
   }
 
   const handleClickClaim = () => {
     claimReward(ethers.utils.parseEther(claiminputamount.toString()))
   }
+
   /*======================= DEPOSIT ===================================*/
   /*======================= DEPOSIT ===================================*/
   /*======================= DEPOSIT ===================================*/
 
   const depositInput = (e) => {
     setDepositInputAmount(parseFloat(e.target.value));
-    console.log(depositinputamount);
   }
   const incrementDepositUp = () => {
     setDepositInputAmount(depositinputamount + 1);
-    console.log(depositinputamount);
   }
   const decrementDepositDown = () => {
-    setDepositInputAmount(depositinputamount - 1);
-    if (depositinputamount < 1) {
-      setDepositInputAmount(0);
+    if (depositinputamount <= 0) {
+      setDepositInputAmount(0.0);
+    } else {
+      setDepositInputAmount(depositinputamount - 1);
     }
-    console.log(depositinputamount);
   }
 
   /*======================= WITHDRAWAL===================================*/
   /*======================= WITHDRAWAL===================================*/
   /*======================= WITHDRAWAL===================================*/
 
-  const withdrawalInput = (e) => {
-    setWithdrawalInputAmount(parseFloat(e.target.value));
-    console.log(withdrawalinputamount);
-  }
-  const incrementWithdrwalUp = () => {
-    setWithdrawalInputAmount(withdrawalinputamount + 1);
-    console.log(depositinputamount);
-  }
-  const decrementWithdrawalDown = () => {
-    setWithdrawalInputAmount(withdrawalinputamount - 1);
-    if (withdrawalinputamount < 1) {
-      setWithdrawalInputAmount(0);
-    }
-    console.log(withdrawalinputamount);
-  }
   const handleClickWithdraw = () => {
     withdraw(withdrawalinputamount.toString())
   }
+
   /*==========================================================*/
   /*==========================================================*/
 
@@ -105,8 +91,6 @@ export default function Mine() {
 
   const handleClickMax = () => {
     setDepositInputAmount(Number(ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3)));
-    
-    console.log(depositinputamount);
   }
 
   return (
@@ -145,7 +129,7 @@ export default function Mine() {
 
           <div className="right-display">
             <div className="balance-and-display-container">
-              <h3 className="stake-title">My Earned $DST</h3>
+              <h3 className="stake-title">My Earned DST</h3>
               <div className="stake-stat-display">
                 <p>{earnedBalance ? ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3) : 0}</p>
               </div>
@@ -162,84 +146,122 @@ export default function Mine() {
       </div>
 
       < div className="stake-body">
-        <form className="stake-form" style={{ height: '220px' }} >
+        <form className="stake-form">
           <h3 className="stake-title">Stake DONK-LP</h3>
           <div className="input-div">
-            <input disabled={!account} onChange={depositInput} value={depositinputamount} type="number" placeholder='0.0' className="deposit-input" />
+            <div className='deposit-input-container'>
+              <h6 className='user-bal'>
+                Balance:  {
+                            account?
+                              balance?
+                                ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3)
+                              :'0.0'
+                            : 'Unlock wallet to view'
+                          }
+              </h6>
+              <span className={`max-btn ${allowance === '0' ? 'max-btn-disabled':''}`} onClick={() => account && allowance !== '0'? handleClickMax():null}>Max</span>
+              <input disabled={!account} onChange={depositInput} value={depositinputamount} type="number" step='any' placeholder='0.0' className="deposit-input" />
+            </div>
             <div className="increment-div">
               <button disabled={!account} onClick={incrementDepositUp} className="increment-plus">+</button>
               <button disabled={!account} onClick={decrementDepositDown} className="increment-minus">-</button>
             </div>
           </div>
-          <div>
-            <h6 className = {`max-value ${allowance === '0' ? 'pointer-disabled':''}`} onClick={() => account? handleClickMax:null}>
-              Max:{balance ? ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3) : 0}
-            </h6>
-          </div>
-          {allowance !== '0' ? 
-          <div>
-            <button className='stake-btn' disabled={!account} onClick={handleClickStake}>Stake</button>
-            <button className='stake-btn' disabled={!account} onClick={handleClickReStake}>ReStake</button>
-          </div>
-            : <button className="stake-btn" disabled={!account} onClick={handleClickApprove}>Approve</button>}
+          {
+            account?
+              allowance !== '0' ?
+              <div>
+                <button className='stake-btn' onClick={handleClickStake}>Stake</button>
+                <button className='stake-btn' onClick={handleClickReStake}>ReStake</button>
+              </div>
+                : <button className="stake-btn" onClick={handleClickApprove}>Approve</button>
+              : <ConnectWalletButton style={{
+                  width: '170px',
+                  height: '35px',
+                  borderRadius: '10px',
+                  color: 'white',
+                  backgroundColor: '#9d70c3',
+                  boxShadow: '3px 3px 1px #414345'
+                }}/>
+          }
         </form>
 
-        <form className="stake-form" style={{ height: '220px' }} >
+        <form className="stake-form">
           <h3 className="stake-title">Withdraw Staked LP</h3>
-          {/* Slider inserted */}
-          <Flex justifyContent="start">
-                    <Text fontSize="20px">{withdrawalinputamount}%</Text>
-                  </Flex>
-                  {/* {!showDetailed && ( */}
-                    <>
-                      <Flex mb="8px">
-                        <Slider value={withdrawalinputamount} onChange={setWithdrawalInputAmount} />
-                      </Flex>
-                      <Flex justifyContent="space-around">
-                        <Button
-                          variant="tertiary"
-                          scale="sm"
-                          onClick={() => setWithdrawalInputAmount(25)}
-                        >
-                          25%
-                        </Button>
-                        <Button
-                          variant="tertiary"
-                          scale="sm"
-                          onClick={() => setWithdrawalInputAmount(50)}
-                        >
-                          50%
-                        </Button>
-                        <Button
-                          variant="tertiary"
-                          scale="sm"
-                          onClick={() => setWithdrawalInputAmount(75)}
-                        >
-                          75%
-                        </Button>
-                        <Button
-                          variant="tertiary"
-                          scale="sm"
-                          onClick={() => setWithdrawalInputAmount(100)}
-                        >
-                          {TranslateString(166, 'Max')}
-                        </Button>
-                      </Flex>
-                    </>
-                  {/* )} */}
-          <button className={`stake-btn ${stakedbalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || stakedbalance?.toString() === '0'} onClick={handleClickWithdraw}>Withdraw</button>
+          <Flex flexDirection={'column'} alignItems={'center'} width={.5}>
+            <Text fontSize="20px">{withdrawalinputamount}%</Text>
+            <Slider min={1} size={20} value={withdrawalinputamount} onChange={setWithdrawalInputAmount} />
+            <Flex justifyContent="space-around" width={1} className='scale-btn-container'>
+              <Button
+                variant="tertiary"
+                scale="sm"
+                className="scale-btn"
+                onClick={() => setWithdrawalInputAmount(25)}
+              >
+                25%
+              </Button>
+              <Button
+                variant="tertiary"
+                scale="sm"
+                className="scale-btn"
+                onClick={() => setWithdrawalInputAmount(50)}
+              >
+                50%
+              </Button>
+              <Button
+                variant="tertiary"
+                scale="sm"
+                className="scale-btn"
+                onClick={() => setWithdrawalInputAmount(75)}
+              >
+                75%
+              </Button>
+              <Button
+                variant="tertiary"
+                scale="sm"
+                className="scale-btn"
+                onClick={() => setWithdrawalInputAmount(100)}
+              >
+                {TranslateString(166, 'Max')}
+              </Button>
+            </Flex>
+          </Flex>
+          {
+            account?
+              <button className={`stake-btn ${stakedbalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || stakedbalance?.toString() === '0'} onClick={handleClickWithdraw}>Withdraw</button>
+              : <ConnectWalletButton style={{
+                  width: '170px',
+                  height: '35px',
+                  borderRadius: '10px',
+                  color: 'white',
+                  backgroundColor: '#9d70c3',
+                  boxShadow: '3px 3px 1px #414345',
+                  transform: 'scale(.95)'
+                }}/>
+          }
         </form>
 
-        <form className="stake-form" style={{ height: '220px' }} >
-          <h3 className="stake-title">Claim Earned $DST</h3>
+        <form className="stake-form">
+          <h3 className="stake-title">Claim Earned DST</h3>
           <div className="input-div">
-            <input disabled={!account} onChange={ClaimInput} value={claiminputamount} type="number" placeholder="place input number" className="withdrawal-input" />
+            <input disabled={!account} onChange={ClaimInput} value={claiminputamount} type="number" placeholder="0" className="withdrawal-input" />
             <div className="increment-div">
               <button disabled={!account} onClick={incrementClaimUp} className="increment-plus">+</button>
               <button disabled={!account} onClick={decrementClaimDown} className="increment-minus">-</button>
             </div>
           </div>
-          <button className={`stake-btn ${earnedBalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || earnedBalance?.toString() === '0'} onClick={handleClickClaim}>Claim</button>
+          {
+            account?
+              <button className={`stake-btn ${earnedBalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || earnedBalance?.toString() === '0'} onClick={handleClickClaim}>Claim</button>
+              : <ConnectWalletButton style={{
+                width: '170px',
+                height: '35px',
+                borderRadius: '10px',
+                color: 'white',
+                backgroundColor: '#9d70c3',
+                boxShadow: '3px 3px 1px #414345'
+              }}/>
+            }
         </form>
       </div>
     </div>
