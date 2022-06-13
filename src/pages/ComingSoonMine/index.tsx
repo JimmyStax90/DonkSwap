@@ -1,14 +1,13 @@
 import "./stake.css";
-import React, { useState, useRef, useEffect, } from 'react'
-import EmbedMine from "./embedMine";
+import React, { useState } from 'react'
 import useStaking from "../../hooks/useStaking";
 import { ethers } from "ethers"
 import useERC20 from "hooks/useERC20";
 import { useActiveWeb3React } from '../../hooks/index';
-import ConnectWalletButton from 'components/ConnectWalletButton'
+import ConnectWalletButton from 'components/ConnectWalletButton';
 import Slider from "../../components/Slider";
-import { Button, Flex, Text } from '../../uikit'
-import useI18n from 'hooks/useI18n'
+import { Button, Flex, Text } from '../../uikit';
+import useI18n from 'hooks/useI18n';
 
 
 export default function Mine() {
@@ -22,8 +21,8 @@ export default function Mine() {
   const total = Number(ethers.utils.formatEther(totalStakedBalance?totalStakedBalance:0));
   const rate = Number(ethers.utils.formatUnits(rewardRate?rewardRate:0,9));
   const apr = total?(rate).toFixed(3):total;
-  const TranslateString = useI18n()
-  
+  const TranslateString = useI18n();
+
   console.log("rewardRatetemp---->", rate);
   console.log("total------>", total);
   console.log("result---->", apr);
@@ -48,7 +47,7 @@ export default function Mine() {
   const handleClickClaim = () => {
     claimReward(ethers.utils.parseEther(claiminputamount.toString()))
   }
-  
+
   /*======================= DEPOSIT ===================================*/
   /*======================= DEPOSIT ===================================*/
   /*======================= DEPOSIT ===================================*/
@@ -152,7 +151,13 @@ export default function Mine() {
           <div className="input-div">
             <div className='deposit-input-container'>
               <h6 className='user-bal'>
-                Balance: {balance ? ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3) : '0.0'}
+                Balance:  {
+                            account?
+                              balance?
+                                ethers.utils.formatEther(balance).slice(0, ethers.utils.formatEther(balance).indexOf(".")+3)
+                              :'0.0'
+                            : 'Unlock wallet to view'
+                          }
               </h6>
               <span className={`max-btn ${allowance === '0' ? 'max-btn-disabled':''}`} onClick={() => account && allowance !== '0'? handleClickMax():null}>Max</span>
               <input disabled={!account} onChange={depositInput} value={depositinputamount} type="number" step='any' placeholder='0.0' className="deposit-input" />
@@ -171,29 +176,26 @@ export default function Mine() {
               </div>
                 : <button className="stake-btn" onClick={handleClickApprove}>Approve</button>
               : <ConnectWalletButton style={{
-                  'width': '170px',
-                  'height': '35px',
-                  'borderRadius': '10px',
-                  'color': 'white',
-                  'backgroundColor': '#9d70c3;',
-                  'boxShadow': '3px 3px 1px #414345'
+                  width: '170px',
+                  height: '35px',
+                  borderRadius: '10px',
+                  color: 'white',
+                  backgroundColor: '#9d70c3',
+                  boxShadow: '3px 3px 1px #414345'
                 }}/>
           }
         </form>
 
         <form className="stake-form">
           <h3 className="stake-title">Withdraw Staked LP</h3>
-          <Flex justifyContent="start">
+          <Flex flexDirection={'column'} alignItems={'center'} width={.5}>
             <Text fontSize="20px">{withdrawalinputamount}%</Text>
-          </Flex>
-          <>
-            <Flex mb="8px">
-              <Slider value={withdrawalinputamount} onChange={setWithdrawalInputAmount} />
-            </Flex>
-            <Flex justifyContent="space-around">
+            <Slider min={1} size={20} value={withdrawalinputamount} onChange={setWithdrawalInputAmount} />
+            <Flex justifyContent="space-around" width={1} className='scale-btn-container'>
               <Button
                 variant="tertiary"
                 scale="sm"
+                className="scale-btn"
                 onClick={() => setWithdrawalInputAmount(25)}
               >
                 25%
@@ -201,6 +203,7 @@ export default function Mine() {
               <Button
                 variant="tertiary"
                 scale="sm"
+                className="scale-btn"
                 onClick={() => setWithdrawalInputAmount(50)}
               >
                 50%
@@ -208,6 +211,7 @@ export default function Mine() {
               <Button
                 variant="tertiary"
                 scale="sm"
+                className="scale-btn"
                 onClick={() => setWithdrawalInputAmount(75)}
               >
                 75%
@@ -215,22 +219,24 @@ export default function Mine() {
               <Button
                 variant="tertiary"
                 scale="sm"
+                className="scale-btn"
                 onClick={() => setWithdrawalInputAmount(100)}
               >
                 {TranslateString(166, 'Max')}
               </Button>
             </Flex>
-          </>
+          </Flex>
           {
             account?
               <button className={`stake-btn ${stakedbalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || stakedbalance?.toString() === '0'} onClick={handleClickWithdraw}>Withdraw</button>
               : <ConnectWalletButton style={{
-                  'width': '170px',
-                  'height': '35px',
-                  'borderRadius': '10px',
-                  'color': 'white',
-                  'backgroundColor': '#9d70c3;',
-                  'boxShadow': '3px 3px 1px #414345'
+                  width: '170px',
+                  height: '35px',
+                  borderRadius: '10px',
+                  color: 'white',
+                  backgroundColor: '#9d70c3',
+                  boxShadow: '3px 3px 1px #414345',
+                  transform: 'scale(.95)'
                 }}/>
           }
         </form>
@@ -248,12 +254,12 @@ export default function Mine() {
             account?
               <button className={`stake-btn ${earnedBalance?.toString() === '0' ? 'btn-disabled':''}`} disabled={!account || earnedBalance?.toString() === '0'} onClick={handleClickClaim}>Claim</button>
               : <ConnectWalletButton style={{
-                'width': '170px',
-                'height': '35px',
-                'borderRadius': '10px',
-                'color': 'white',
-                'backgroundColor': '#9d70c3;',
-                'boxShadow': '3px 3px 1px #414345'
+                width: '170px',
+                height: '35px',
+                borderRadius: '10px',
+                color: 'white',
+                backgroundColor: '#9d70c3',
+                boxShadow: '3px 3px 1px #414345'
               }}/>
             }
         </form>

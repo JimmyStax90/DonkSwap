@@ -196,6 +196,16 @@
     background-color: none;
     box-shadow: inset 2px 1px 10px rgba(0, 0, 0, 0.5);
 }
+
+.scale-btn {
+    height: 30px !important;
+    padding: 0 12px !important;
+}
+
+.scale-btn-container {
+    margin-top: 5px !important;
+}
+
 .stake-btn{
     width: 150px;
     height: 35px;
@@ -265,6 +275,15 @@
 
     .floating-box {
         height: 87%;
+    }
+
+    .scale-btn {
+        height: 24px !important;
+        padding: 0 10px !important;
+    }
+    
+    .scale-btn-container {
+        margin-top: 0px !important;
     }
 }
 
