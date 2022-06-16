@@ -12,7 +12,7 @@ import useI18n from 'hooks/useI18n';
 export default function Mine() {
   const { account } = useActiveWeb3React();
   const [depositinputamount, setDepositInputAmount] = useState(0.00);
-  const [withdrawalinputamount, setWithdrawalInputAmount] = useState(1);
+  const [withdrawalinputamount, setWithdrawalInputAmount] = useState(0);
   const [claiminputamount, setClaimInputAmount] = useState(0);
   const [errormessage, setErrorMessage] = useState('')
   const { stakedbalance, earnedBalance, totalStakedBalance, totalRewards, rewardRate, stake,restake, withdraw, claimReward } = useStaking();
@@ -49,7 +49,7 @@ export default function Mine() {
     }
   }
   const incrementClaimUp = () => {
-    setClaimInputAmount(claiminputamount + 1);
+    setClaimInputAmount(parseInt((claiminputamount + 1).toFixed(0)));
     if(claimInputRef.current) {
       claimInputRef.current.focus();
     }
@@ -107,7 +107,7 @@ export default function Mine() {
     }
   }
   const incrementDepositUp = () => {
-    setDepositInputAmount(depositinputamount + 1);
+    setDepositInputAmount(parseInt((depositinputamount + 1).toFixed(2)));
     if(depositInputRef.current) {
       depositInputRef.current.focus();
     }
@@ -155,27 +155,14 @@ export default function Mine() {
   /*======================= WITHDRAWAL===================================*/
 
   const withdrawalInput = (e) => {
-    const hasPercentSign = e.target.value.includes('%')
-
-    if (hasPercentSign) {
-      const numberInput = parseInt(e.target.value.replace('%',''));
-  
-      if (numberInput > 100) {
-        setWithdrawalInputAmount(100);
-      } else if (numberInput < 1 || Number.isNaN(numberInput)) {
-        setWithdrawalInputAmount(0);
-      } else {
-        setWithdrawalInputAmount(numberInput);
-      }
-    } else if (e.target.value.length > 1) {
-      const trimmedNumber = parseInt(e.target.value.slice(0,-1));
-      setWithdrawalInputAmount(trimmedNumber);
+    if (e.target.value === '' || e.target.value < 0) {
+      setWithdrawalInputAmount(0.000);
     } else {
-      setWithdrawalInputAmount(0);
+      setWithdrawalInputAmount(parseFloat(e.target.value));
     }
   }
   const incrementWithdrwalUp = () => {
-    setWithdrawalInputAmount(withdrawalinputamount + 1);
+    setWithdrawalInputAmount(parseFloat((withdrawalinputamount + 1).toFixed(3)));
     if(withdrawInputRef.current) {
       withdrawInputRef.current.focus();
     }
@@ -184,14 +171,16 @@ export default function Mine() {
     if (withdrawalinputamount - 1 < 1) {
       setWithdrawalInputAmount(1);
     } else {
-      setWithdrawalInputAmount(parseInt((withdrawalinputamount - 1).toFixed(0)));
+      setWithdrawalInputAmount(parseFloat((withdrawalinputamount - 1).toFixed(3)));
     }
     if(withdrawInputRef.current) {
       withdrawInputRef.current.focus();
     }
   }
   const handleClickWithdraw = () => {
-    withdraw(withdrawalinputamount.toString())
+    const userStakedBal = Number(ethers.utils.formatEther(stakedbalance).slice(0, ethers.utils.formatEther(stakedbalance).indexOf(".")+3));
+    const withdrawPercent = (withdrawalinputamount/userStakedBal)*100;
+    withdraw(withdrawPercent.toString())
   }
 
   const handleClickMaxWithdrawDropdown = () => {
@@ -205,7 +194,12 @@ export default function Mine() {
   }
 
   const handleClickMaxWithdraw = (percent) => {
-    setWithdrawalInputAmount(percent);
+    if (!hasUserApproved && approveBtnRef.current) {
+      approveBtnRef.current.classList.toggle('shake');
+    } else {
+      const userStakedBal = Number(ethers.utils.formatEther(stakedbalance).slice(0, ethers.utils.formatEther(stakedbalance).indexOf(".")+3));
+      setWithdrawalInputAmount(Number((userStakedBal*(percent/100)).toFixed(3)));
+    }
 
     if(maxDropdownContentWithdrawRef.current && overlayRef.current) {
       maxDropdownContentWithdrawRef.current.style.display = 'none';
@@ -363,7 +357,7 @@ export default function Mine() {
                   <span className="max-btn" onClick={() => account ? handleClickMaxWithdraw(25):null}>25%</span>
                 </div>
               </div>
-              <input ref={withdrawInputRef} disabled={!account} onChange={withdrawalInput} value={withdrawalinputamount+'%'} type="text" placeholder="1-100%" className="withdrawal-input" />
+              <input ref={withdrawInputRef} disabled={!account} onChange={withdrawalInput} value={withdrawalinputamount.toString()} type="number" placeholder="0.00" className="withdrawal-input" onWheel={withdrawalInput} />
             </div>
               {/* <span className="percent-symbol">%</span> */}
             <div className="increment-div">
@@ -373,7 +367,7 @@ export default function Mine() {
           </div>
           {
             account?
-              <button className={`stake-btn ${!hasStakedBal || withdrawalinputamount === 0 ? 'btn-disabled':''}`} disabled={!account || !hasStakedBal || withdrawalinputamount === 0} onClick={handleClickWithdraw}>Withdraw</button>
+              <button className={`stake-btn ${!hasStakedBal || withdrawalinputamount === 0 ? 'btn-disabled':''}`} disabled={!account /*|| !hasStakedBal*/ || withdrawalinputamount === 0} onClick={handleClickWithdraw}>Withdraw</button>
               : <ConnectWalletButton style={{
                   width: '170px',
                   height: '35px',
