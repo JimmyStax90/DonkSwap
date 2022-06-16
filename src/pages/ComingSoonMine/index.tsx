@@ -33,9 +33,9 @@ export default function Mine() {
   const hasStakedBal = stakedbalance?.toString() !== '0';
   const hasEarnedBal = earnedBalance?.toString() !== '0';
 
-  console.log("rewardRatetemp---->", rate);
-  console.log("total------>", total);
-  console.log("result---->", apr);
+  // console.log("rewardRatetemp---->", rate);
+  // console.log("total------>", total);
+  // console.log("result---->", apr);
   /*======================= ClaimReward ===================================*/
   /*======================= ClaimReward ===================================*/
   /*======================= ClaimReward ===================================*/
