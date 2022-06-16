@@ -41,7 +41,7 @@ export default function Mine() {
   /*======================= ClaimReward ===================================*/
 
   const ClaimInput = (e) => {
-    if (e.target.value === '')
+    if (e.target.value === '' || e.target.value < 0)
     {
       setClaimInputAmount(0);
     } else {
@@ -100,7 +100,7 @@ export default function Mine() {
   /*======================= DEPOSIT ===================================*/
 
   const depositInput = (e) => {
-    if (e.target.value === '') {
+    if (e.target.value === '' || e.target.value < 0) {
       setDepositInputAmount(0.00);
     } else {
       setDepositInputAmount(parseFloat(e.target.value));
@@ -324,7 +324,7 @@ export default function Mine() {
                   <span className="max-btn" onClick={() => account ? handleClickMaxDeposit(25):null}>25%</span>
                 </div>
               </div>
-              <input ref={depositInputRef} disabled={!account} onChange={depositInput} value={depositinputamount} type="number" step='any' placeholder='0.0' className="deposit-input" />
+              <input ref={depositInputRef} disabled={!account} onChange={depositInput} value={depositinputamount.toString()} type="number" placeholder='0.0' className="deposit-input" onWheel={depositInput} />
             </div>
             <div className="increment-div">
               <button disabled={!account} onClick={incrementDepositUp} className="increment-plus">+</button>
@@ -398,7 +398,7 @@ export default function Mine() {
                   <span className="max-btn" onClick={() => account ? handleClickMaxClaim(25):null}>25%</span>
                 </div>
               </div>
-              <input ref={claimInputRef} disabled={!account} onChange={ClaimInput} value={claiminputamount} type="number" placeholder="0" className="withdrawal-input" />
+              <input ref={claimInputRef} disabled={!account} onChange={ClaimInput} value={claiminputamount.toString()} type="number" placeholder="0" className="withdrawal-input" onWheel={ClaimInput} />
             </div>
             <div className="increment-div">
               <button disabled={!account} onClick={incrementClaimUp} className="increment-plus">+</button>
