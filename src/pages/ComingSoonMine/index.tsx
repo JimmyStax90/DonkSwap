@@ -1,7 +1,7 @@
 import "./stake.css";
 import React, { useState, useRef } from 'react'
 import useStaking from "../../hooks/useStaking";
-import { ethers } from "ethers"
+import { ethers, BigNumber } from "ethers"
 import useERC20 from "hooks/useERC20";
 import { useActiveWeb3React } from '../../hooks/index';
 import ConnectWalletButton from 'components/ConnectWalletButton';
@@ -318,7 +318,7 @@ export default function Mine() {
                   <span className="max-btn" onClick={() => account ? handleClickMaxDeposit(25):null}>25%</span>
                 </div>
               </div>
-              <input ref={depositInputRef} disabled={!account} onChange={depositInput} value={depositinputamount.toString()} type="number" placeholder='0.0' className="deposit-input" onWheel={depositInput} />
+              <input ref={depositInputRef} disabled={!account} onChange={depositInput} value={depositinputamount.toString()} type="number" placeholder='0.0' className="deposit-input" />
             </div>
             <div className="increment-div">
               <button disabled={!account} onClick={incrementDepositUp} className="increment-plus">+</button>
@@ -357,7 +357,7 @@ export default function Mine() {
                   <span className="max-btn" onClick={() => account ? handleClickMaxWithdraw(25):null}>25%</span>
                 </div>
               </div>
-              <input ref={withdrawInputRef} disabled={!account} onChange={withdrawalInput} value={withdrawalinputamount.toString()} type="number" placeholder="0.00" className="withdrawal-input" onWheel={withdrawalInput} />
+              <input ref={withdrawInputRef} disabled={!account} onChange={withdrawalInput} value={withdrawalinputamount.toString()} type="number" placeholder="0.00" className="withdrawal-input" />
             </div>
               {/* <span className="percent-symbol">%</span> */}
             <div className="increment-div">
@@ -367,7 +367,7 @@ export default function Mine() {
           </div>
           {
             account?
-              <button className={`stake-btn ${!hasStakedBal || withdrawalinputamount === 0 ? 'btn-disabled':''}`} disabled={!account /*|| !hasStakedBal*/ || withdrawalinputamount === 0} onClick={handleClickWithdraw}>Withdraw</button>
+              <button className={`stake-btn ${!hasStakedBal || withdrawalinputamount === 0 ? 'btn-disabled':''}`} disabled={!account || !hasStakedBal || withdrawalinputamount === 0} onClick={handleClickWithdraw}>Withdraw</button>
               : <ConnectWalletButton style={{
                   width: '170px',
                   height: '35px',
@@ -392,7 +392,7 @@ export default function Mine() {
                   <span className="max-btn" onClick={() => account ? handleClickMaxClaim(25):null}>25%</span>
                 </div>
               </div>
-              <input ref={claimInputRef} disabled={!account} onChange={ClaimInput} value={claiminputamount.toString()} type="number" placeholder="0" className="withdrawal-input" onWheel={ClaimInput} />
+              <input ref={claimInputRef} disabled={!account} onChange={ClaimInput} value={claiminputamount.toString()} type="number" placeholder="0" className="withdrawal-input" />
             </div>
             <div className="increment-div">
               <button disabled={!account} onClick={incrementClaimUp} className="increment-plus">+</button>
