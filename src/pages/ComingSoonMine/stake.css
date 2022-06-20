@@ -10,7 +10,8 @@
 .overlay{
     overflow: hidden;
     display: none;
-    background-color: transparent;
+    background-color: #000;
+    opacity: .4;
     position: fixed;
     top: 0;
     left: 0;
@@ -197,7 +198,7 @@
     line-height: 1.5;
     margin-top: -4px;
     margin-left: -5px;
-    background-color: hsla(0, 0%, 100%,.8);
+    background-color: hsla(0, 0%, 100%,.7);
     z-index: 9999;
     overflow-y: auto;
     overflow-x: visible;
@@ -312,6 +313,11 @@
     background-color: #8d6caa;
 }
 
+.errorMsg{
+    font-size: .8rem;
+    margin-top: -1.5rem;
+}
+
 @media (max-width: 1136px) {
     .stake-body {
         flex-direction: column;
@@ -396,5 +402,10 @@
     .input-container{
         padding-top: .7rem;
         margin-top: -.7rem;
+    }
+
+    .errorMsg{
+        font-size: .6rem;
+        margin-top: -.8rem;
     }
 }
