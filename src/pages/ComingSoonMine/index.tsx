@@ -33,8 +33,6 @@ export default function Mine() {
   const withdrawInputRef = useRef<HTMLInputElement>();
   const approveBtnRef = useRef<HTMLButtonElement>();
   const hasUserApproved = allowance !== '0';
-  const hasStakedBal = stakedbalance?.toString() !== '0';
-  const hasEarnedBal = earnedBalance?.toString() !== '0';
 
   // console.log("rewardRatetemp---->", rate);
   // console.log("total------>", total);
@@ -75,8 +73,11 @@ export default function Mine() {
   }
   const handleClickClaim = () => {
     const userRewardBal = new BigNumber(ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3))
-    if(new BigNumber(claiminputamount).gt(userRewardBal)) {
+    const claimAmt = new BigNumber(claiminputamount)
+    if(claimAmt.gt(userRewardBal)) {
       setErrorMessageclaim('Amount cannot exceed your reward balance.')
+    } else if (claimAmt.lte(0) || claimAmt.isNaN()) {
+      setErrorMessageclaim('Amount cannot be zero.')
     } else {
       claimReward(ethers.utils.parseEther(claiminputamount.toString()))
     }
@@ -115,8 +116,11 @@ export default function Mine() {
 
   const handleClickStake = () => {
     const userBal = new BigNumber(ethers.utils.formatEther(balance?balance:0).slice(0, ethers.utils.formatEther(balance?balance:0).indexOf(".")+3));
-    if (new BigNumber(depositinputamount).gt(userBal)){
+    const depositAmt = new BigNumber(depositinputamount)
+    if (depositAmt.gt(userBal)){
       setErrorMessagedeposit('Amount cannot exceed your balance.')
+    } else if (depositAmt.lte(0) || depositAmt.isNaN()) {
+      setErrorMessagedeposit('Amount cannot be zero.')
     } else {
       stake(ethers.utils.parseEther(depositinputamount))
     }
@@ -187,7 +191,7 @@ export default function Mine() {
     setErrorMessagewithdraw('');
     const amt = new BigNumber(e.target.value);
     if (amt.lt(0)) {
-      setWithdrawalInputAmount('0');
+      setWithdrawalInputAmount('0.000');
     } else {
       setWithdrawalInputAmount(amt.toString());
     }
@@ -204,7 +208,7 @@ export default function Mine() {
     setErrorMessagewithdraw('');
     const amt = new BigNumber(withdrawalinputamount).minus(1)
     if (amt.lt(0) || amt.isNaN()) {
-      setWithdrawalInputAmount('0');
+      setWithdrawalInputAmount('0.000');
     } else {
       const amt = new BigNumber(withdrawalinputamount).minus(1)
       setWithdrawalInputAmount(amt.toString());
@@ -215,8 +219,11 @@ export default function Mine() {
   }
   const handleClickWithdraw = () => {
     const userStakedBal = new BigNumber(ethers.utils.formatEther(stakedbalance).slice(0, ethers.utils.formatEther(stakedbalance).indexOf(".")+3));
-    if (new BigNumber(withdrawalinputamount).gt(userStakedBal)) {
+    const withdrawAmt = new BigNumber(withdrawalinputamount);
+    if (withdrawAmt.gt(userStakedBal)) {
       setErrorMessagewithdraw('Amount cannot exceed your staked balance.')
+    } else if (withdrawAmt.lte(0) || withdrawAmt.isNaN()) {
+      setErrorMessagewithdraw('Amount cannot be zero.')
     } else {
       const withdrawPercent = (new BigNumber(withdrawalinputamount).div(userStakedBal)).times(100);
       withdraw(withdrawPercent.toString())
@@ -254,8 +261,12 @@ export default function Mine() {
   /*==========================================================*/
   /*==========================================================*/
 
-  const handleClickApprove = () => {
-    approve()
+  const handleClickApprove = async () => {
+    try {
+      await approve()
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const handleClickReStake = async () => {
@@ -395,7 +406,7 @@ export default function Mine() {
           <div className="input-div">
             <div className="input-container">
               <div className='max-dropdown'>
-                <span className={`max-btn ${!stakedbalance ? 'max-btn-disabled':''}`} onClick={() => account ? handleClickMaxWithdrawDropdown():null}>Max</span>
+                <span className={`max-btn ${!account ? 'max-btn-disabled':''}`} onClick={() => account ? handleClickMaxWithdrawDropdown():null}>Max</span>
                 <div ref={maxDropdownContentWithdrawRef} className="max-dropdown-content">
                   <span className="max-btn" onClick={() => account ? handleClickMaxWithdraw(100):null}>Max</span>
                   <span className="max-btn" onClick={() => account ? handleClickMaxWithdraw(75):null}>75%</span>
@@ -418,7 +429,7 @@ export default function Mine() {
           }
           {
             account?
-              <button className={`stake-btn ${hasStakedBal || parseFloat(withdrawalinputamount) === 0 || withdrawalinputamount === '' ? 'btn-disabled':''}`} disabled={!account || !hasStakedBal || parseFloat(withdrawalinputamount) === 0 ||  withdrawalinputamount === ''} onClick={handleClickWithdraw}>Withdraw</button>
+              <button className={'stake-btn'} disabled={!account} onClick={handleClickWithdraw}>Withdraw</button>
               : <ConnectWalletButton style={{
                   width: '170px',
                   height: '35px',
@@ -435,7 +446,7 @@ export default function Mine() {
           <div className="input-div">
             <div className='input-container'>
               <div className='max-dropdown'>
-                <span className={`max-btn ${!earnedBalance ? 'max-btn-disabled':''}`} onClick={() => account ? handleClickMaxClaimDropdown():null}>Max</span>
+                <span className={`max-btn ${!account ? 'max-btn-disabled':''}`} onClick={() => account ? handleClickMaxClaimDropdown():null}>Max</span>
                 <div ref={maxDropdownContentClaimRef} className="max-dropdown-content">
                   <span className="max-btn" onClick={() => account ? handleClickMaxClaim(100):null}>Max</span>
                   <span className="max-btn" onClick={() => account ? handleClickMaxClaim(75):null}>75%</span>
@@ -457,7 +468,7 @@ export default function Mine() {
           }
           {
             account?
-              <button className={`stake-btn ${!hasEarnedBal ? 'btn-disabled':''}`} disabled={!account || !hasEarnedBal || parseInt(claiminputamount) === 0 || claiminputamount === '' } onClick={handleClickClaim}>Claim</button>
+              <button className={'stake-btn'} disabled={!account} onClick={handleClickClaim}>Claim</button>
               : <ConnectWalletButton style={{
                 width: '170px',
                 height: '35px',
