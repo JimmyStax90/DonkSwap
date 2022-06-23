@@ -10,7 +10,8 @@
 .overlay{
     overflow: hidden;
     display: none;
-    background-color: transparent;
+    background-color: #000;
+    opacity: .4;
     position: fixed;
     top: 0;
     left: 0;
@@ -164,7 +165,7 @@
     box-shadow: inset 2px 1px 10px rgba(0, 0, 0, 0.5);
 }
 
-.deposit-input-container{
+.input-container{
     position: relative;
     padding-top: .9rem;
     width: 87%;
@@ -197,7 +198,7 @@
     line-height: 1.5;
     margin-top: -4px;
     margin-left: -5px;
-    background-color: hsla(0, 0%, 100%,.8);
+    background-color: hsla(0, 0%, 100%,.7);
     z-index: 9999;
     overflow-y: auto;
     overflow-x: visible;
@@ -248,7 +249,7 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.178);
     transition: none;
 }
-.btn-disabled, button:disabled {
+button:disabled {
     cursor: default !important;
     background-color:#414345;
 }
@@ -259,7 +260,23 @@
 .stake-btn:active:enabled{
     transform: scale(.98);
 }
+.shake{
+    animation: shake .75s;
+}
 
+@keyframes shake {
+    0% { transform: translate(1px, 1px) scale(1.1) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) scale(1.15) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) scale(1.2) rotate(1deg); }
+    30% { transform: translate(3px, 2px) scale(1.2) rotate(0deg); }
+    40% { transform: translate(1px, -1px) scale(1.2) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) scale(1.2) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) scale(1.22) rotate(0deg); }
+    70% { transform: translate(3px, 1px) scale(1.2) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) scale(1.15) rotate(1deg); }
+    90% { transform: translate(1px, 2px) scale(1.1) rotate(0deg); }
+    100% { transform: translate(1px, -2px) scale(1) rotate(-1deg); }
+}
 
 .increment-div{
     height: 45px;
@@ -294,6 +311,11 @@
 .increment-minus:hover:enabled{
     cursor: pointer;
     background-color: #8d6caa;
+}
+
+.errorMsg{
+    font-size: .8rem;
+    margin-top: -1.5rem;
 }
 
 @media (max-width: 1136px) {
@@ -377,8 +399,13 @@
         font-size: .6rem;
     }
 
-    .deposit-input-container{
+    .input-container{
         padding-top: .7rem;
         margin-top: -.7rem;
+    }
+
+    .errorMsg{
+        font-size: .6rem;
+        margin-top: -.8rem;
     }
 }

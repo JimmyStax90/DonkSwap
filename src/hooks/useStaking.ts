@@ -54,14 +54,14 @@ const useStaking = () => {
                 withdraw, 
                 claimReward 
             } 
-            console.log({
-                stakedbalance: value.stakedbalance?.toString(),
-                earnedBalance: value.earnedBalance?.toString(),
-                // apy: value.apy?.toString(),
-                totalStakedBlalnce: value.totalStakedBalance?.toString(),
-                totalRewards: value.totalRewards?.toString(),
-                rewardRate: value.rewardRate?.toString(),
-            })
+            // console.log({
+            //     stakedbalance: value.stakedbalance?.toString(),
+            //     earnedBalance: value.earnedBalance?.toString(),
+            //     // apy: value.apy?.toString(),
+            //     totalStakedBlalnce: value.totalStakedBalance?.toString(),
+            //     totalRewards: value.totalRewards?.toString(),
+            //     rewardRate: value.rewardRate?.toString(),
+            // })
             return value;
         }, 
         [stakedbalance, earnedBalance, totalStakedBalance, totalRewards, rewardRate, stake,restake, withdraw, claimReward]
