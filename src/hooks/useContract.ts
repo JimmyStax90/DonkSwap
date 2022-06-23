@@ -18,7 +18,7 @@ function useContract(address: string | undefined, ABI: any, withSignerIfPossible
 
   return useMemo(() => {
     if (!address || !ABI || !library) return null
-    console.log("account===========", withSignerIfPossible, account ? account : undefined)
+    // console.log("account===========", withSignerIfPossible, account ? account : undefined)
     try {
       return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
     } catch (error) {
