@@ -21,7 +21,8 @@ export default function Mine() {
   const rate = Number(ethers.utils.formatUnits(rewardRate?rewardRate:0,9));
   // const apr = total?(rate).toFixed(3):total;
   // set APR to percentage of total staked
-  const apr = total?((stakedbalance/total)*100).toFixed(3):total;
+  const stakedBalanceLimit = Number(ethers.utils.formatEther(stakedbalance?stakedbalance:0));
+  const apr = total?((stakedBalanceLimit/total)*100).toFixed(3):total;
   const TranslateString = useI18n();
   const maxDropdownContentDeposit = useRef<HTMLDivElement>();
   const maxDropdownContentClaim = useRef<HTMLDivElement>();
