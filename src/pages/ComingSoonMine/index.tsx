@@ -22,9 +22,10 @@ export default function Mine() {
   const { allowance, approve, balance } = useERC20();
   const total = Number(ethers.utils.formatEther(totalStakedBalance?totalStakedBalance:0));
   const rate = Number(ethers.utils.formatUnits(rewardRate?rewardRate:0,9));
-  // convert staked balance to ether
-  const stakedBalanceLimit = Number(ethers.utils.formatEther(stakedbalance?stakedbalance:0));
-  const apr = total?((stakedBalanceLimit/total)*100).toFixed(3):total;
+  const apr = total?(rate).toFixed(3):total;
+  // set APR to percentage of total staked
+  // const stakedBalanceLimit = Number(ethers.utils.formatEther(stakedbalance?stakedbalance:0));
+  // const apr = total?((stakedBalanceLimit/total)*100).toFixed(3):total;
   const TranslateString = useI18n();
   const maxDropdownContentDepositRef = useRef<HTMLDivElement>();
   const maxDropdownContentClaimRef = useRef<HTMLDivElement>();
@@ -81,7 +82,7 @@ export default function Mine() {
     } else if (claimAmt.lte(0) || claimAmt.isNaN()) {
       setErrorMessageclaim('Amount cannot be zero.')
     } else {
-      claimReward(ethers.utils.parseEther(claiminputamount.toString()))
+      claimReward(claiminputamount.toString())
     }
   }
 
