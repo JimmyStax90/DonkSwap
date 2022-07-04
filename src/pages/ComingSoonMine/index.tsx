@@ -82,7 +82,7 @@ export default function Mine() {
     } else if (claimAmt.lte(0) || claimAmt.isNaN()) {
       setErrorMessageclaim('Amount cannot be zero.')
     } else {
-      claimReward(ethers.utils.parseEther(claiminputamount.toString()))
+      claimReward(claiminputamount.toString())
     }
   }
 
