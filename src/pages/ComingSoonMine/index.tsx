@@ -84,13 +84,15 @@ export default function Mine() {
   const handleClickClaim = () => {
     const userRewardBal = new BigNumber(ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3))
     const claimAmt = new BigNumber(ethers.utils.formatEther(claiminputamount.toString()))
+    console.log(claimAmt.c.toString())
+    
     
     if(claimAmt.gt(userRewardBal)) {
       setErrorMessageclaim('Amount cannot exceed your reward balance.')
     } else if (claimAmt.lte(0) || claimAmt.isNaN()) {
       setErrorMessageclaim('Amount cannot be zero.')
     } else {
-      claimReward(claimAmt.toString())
+      claimReward(claimAmt.c.toString())
     }
   }
 
