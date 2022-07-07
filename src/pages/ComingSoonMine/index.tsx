@@ -19,10 +19,16 @@ export default function Mine() {
   const [errormessagedeposit, setErrorMessagedeposit] = useState('')
   const [errormessageclaim, setErrorMessageclaim] = useState('')
   const { stakedbalance, earnedBalance, totalStakedBalance, totalRewards, rewardRate, stake,restake, withdraw, claimReward } = useStaking();
-  const { allowance, approve, balance } = useERC20();
+  const { allowance, approve, balance, totalSupply } = useERC20();
   const total = Number(ethers.utils.formatEther(totalStakedBalance?totalStakedBalance:0));
+  const tReward = Number(ethers.utils.formatUnits(totalRewards?totalRewards:0,9))
   const rate = Number(ethers.utils.formatUnits(rewardRate?rewardRate:0,9));
-  const apr = total?(rate).toFixed(3):total;
+  const totalLPSupply = Number(ethers.utils.formatEther(totalSupply?totalSupply:0))
+  const bal = Number(ethers.utils.formatEther(balance?balance:0))
+  const apr = (((rate*86400*365)/((2*tReward*total)/totalLPSupply))*100).toFixed(2)
+  // console.log('rate->',rate, ' balance of 0x71-> ', bal,' total staked balance-> ', total, ' totalLPSupply-> ', totalLPSupply)
+  
+  // const apr = ethers.utils.formatUnits(calcapr.toString(),9).slice(0,ethers.utils.formatUnits(calcapr.toString(),9).indexOf('.')+3)
   // set APR to percentage of total staked
   // const stakedBalanceLimit = Number(ethers.utils.formatEther(stakedbalance?stakedbalance:0));
   // const apr = total?((stakedBalanceLimit/total)*100).toFixed(3):total;
@@ -46,12 +52,13 @@ export default function Mine() {
 
   const ClaimInput = (e) => {
     setErrorMessageclaim('');
-    const amt = new BigNumber(e.target.value);
+    const amt = new BigNumber(e.target.value,10);
     if (amt.lt(0))
     {
       setClaimInputAmount('0');
     } else {
       setClaimInputAmount(amt.toFixed(0));
+      
     }
   }
   const incrementClaimUp = () => {
@@ -76,13 +83,14 @@ export default function Mine() {
   }
   const handleClickClaim = () => {
     const userRewardBal = new BigNumber(ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3))
-    const claimAmt = new BigNumber(claiminputamount)
+    const claimAmt = new BigNumber(ethers.utils.formatEther(claiminputamount.toString()))
+    
     if(claimAmt.gt(userRewardBal)) {
       setErrorMessageclaim('Amount cannot exceed your reward balance.')
     } else if (claimAmt.lte(0) || claimAmt.isNaN()) {
       setErrorMessageclaim('Amount cannot be zero.')
     } else {
-      claimReward(claiminputamount.toString())
+      claimReward(claimAmt.toString())
     }
   }
 
