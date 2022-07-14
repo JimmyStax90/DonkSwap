@@ -407,7 +407,7 @@ const HomePage = (props) => {
                             <div className="profile-pic-container">
                                 <img src={(cto)} alt="coo" className="dev-pics" id="CTO" />
                             </div>
-                            <h3>Raden | CTO </h3>
+                            <h3>Raden | Developer </h3>
                             <span className="social-link-hugger" ref={ctoLinkRef} onMouseOver={ctoLinkRefUp} onMouseOut={ctoLinkRefDown}>
                                 <a href="https://www.linkedin.com/in/thebreakfastmarketingco/" target="_blank">
                                     <img src={(linkedInLogo)} alt="linedin" className="linkedin" />
