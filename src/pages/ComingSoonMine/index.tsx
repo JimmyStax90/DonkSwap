@@ -83,7 +83,9 @@ export default function Mine() {
   }
   const handleClickClaim = () => {
     const userRewardBal = new BigNumber(ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3))
-    const claimAmt = new BigNumber(ethers.utils.formatEther(claiminputamount.toString()))
+    const claimAmt = new BigNumber(ethers.utils.formatUnits(claiminputamount,9))
+    console.log(claimAmt.c.toString())
+    
     
     if(claimAmt.gt(userRewardBal)) {
       setErrorMessageclaim('Amount cannot exceed your reward balance.')
