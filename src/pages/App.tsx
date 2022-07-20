@@ -9,6 +9,7 @@ import AddLiquidity from './AddLiquidity'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import DonkSeal from './DonkSeal'
+import DonkNFT from './DonkNFT'
 import RemoveLiquidity from './RemoveLiquidity'
 import AddSeal from './AddSeal'
 import DeleteSeal from './DeleteSeal'
@@ -80,6 +81,7 @@ export default function App() {
                 <Switch>
                   <Route exact path="/home" component={HomePage} />
                   <Route exact path="/donk-seal" component={DonkSeal} />
+                  <Route exact path="/donk-nft" component={DonkNFT} />
                   <Route exact path="/casino" component={Casino} />
                   <Route exact path="/mine" component={Mine} />
                   {/* <Route exact path="/bracketchallenge" component={NCAATournament} /> */}
