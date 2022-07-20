@@ -1,4 +1,5 @@
 import React from 'react'
+// import aceSVG from "../Home/images/Ace.svg";
 
 export default function DonkNFT() {
     return (
@@ -9,7 +10,10 @@ export default function DonkNFT() {
           display: none !important;
         }
       `}</style>
-            <img src="/images/logo.png" style={{ zIndex: 0, width: 'min-content', marginBottom: 26, marginTop: '-31px' }} />
+            <div className="right-of-first-box">
+                {/*<img src={(aceSVG)} alt="ace" className="ace-logo" />*/}
+                <img src='/images/logo.png' alt="logo" className="donkey-logo" />
+            </div>
                 <h2>DonkSwap Minting Dapp</h2>
                 <h3>Coming soon...</h3>
         </>
