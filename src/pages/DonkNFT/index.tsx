@@ -14,8 +14,8 @@ export default function DonkNFT() {
                 {/*<img src={(aceSVG)} alt="ace" className="ace-logo" />*/}
                 <img src='/images/logo.png' alt="logo" className="donkey-logo" />
             </div>
-                <h2>DonkSwap Minting Dapp</h2>
-                <h3>Coming soon...</h3>
+                <h2>DonkSwap NFT Launchpad</h2>
+                <h3>Coming Soon...</h3>
         </>
     )
 }
