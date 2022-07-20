@@ -61,7 +61,7 @@ export function PriceChart({ chartData }) {
             // column: {
             //     colors: undefined,
             //     opacity: 0.1
-            // },  
+            // },
             padding: {
                 top: 0,
                 right: 0,
@@ -163,6 +163,7 @@ export function PriceChart({ chartData }) {
     }
     return (
         <>
+            {/*// @ts-ignore*/}
             <Chart
                 options={chartOptions}
                 series={chartDataMapped}

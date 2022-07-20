@@ -159,6 +159,7 @@ const closeModal = () => {
 }
 
 
+
   return (
     <>
       {/* @ts-ignore */}
@@ -172,6 +173,7 @@ const closeModal = () => {
         <CardBody >
           <AutoColumn gap="md">
             <div style={{ maxWidth: '100%'}} className="donkseal-whole-container">
+              {/* @ts-ignore */}
               <MaterialTable
                 components={{
                   Container: (props) => <Paper {...props} elevation={0} style={{width: '100%'}}/>,
@@ -285,7 +287,7 @@ const closeModal = () => {
                       setCoinScan(coinScanRef.current = `https://bscscan.com/address/${data?.coinAddress}`);
                         // @ts-ignore
                       setTokenSummary(tokenSummaryRef.current = `${data?.summary}`);
-                      
+
                     },
                   },
                 ]}
@@ -300,7 +302,7 @@ const closeModal = () => {
                       <h3 ref={coinNameRef}>{coinName}</h3>
                          {/* @ts-ignore */}
                           <p ref={coinAddressRef} style={{ fontSize:'12px'}}>{coinAddress}</p>
-                      <div className='token-menu-div'>                       
+                      <div className='token-menu-div'>
                           {/* @ts-ignore */}
                           <a ref={coinWebsiteRef} href={coinwebsite} target='_blank'>
                             <p> Website </p>
@@ -310,16 +312,16 @@ const closeModal = () => {
                           <a ref={coinAuditRef} href={coinaudit} target='_blank'>
                             <p> Audit </p>
                           </a>
-                          |                                              
+                          |
                           {/* @ts-ignore */}
                           <a ref={coinScanRef} href={coinscan} target='_blank'>
                             <p> BSC Scan </p>
-                          </a>                                              
+                          </a>
                         </div>
                   <h3>Summary of project:</h3>
                   {/* @ts-ignore */}
                   <p ref ={tokenSummaryRef}  style={{ fontSize:'12px',lineHeight: '1rem', marginBottom:'20px'}}>
-                    {tokensummary} 
+                    {tokensummary}
                   </p>
               </div>
             </div>
