@@ -15,10 +15,8 @@ export default function DonkNFT() {
                 {/*<img src={(aceSVG)} alt="ace" className="ace-logo" />*/}
                 <img src='/images/logo.png' alt="logo" style={{position: 'relative'}} className="animated-logo" />
             </div>
-                <h2 style={{textAlign: 'center'}}>DonkSwap Minting Dapp</h2>
-                <h3 style={{textAlign: 'center'}}>Coming soon...</h3>
-            </div>
-
+                <h2 style={{textAlign: 'center'}}>DonkSwap NFT Launchpad</h2>
+                <h3 style={{textAlign: 'center'}}>Coming Soon...</h3>
         </>
     )
 }
