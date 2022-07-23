@@ -83,7 +83,7 @@ export default function Mine() {
   }
   const handleClickClaim = () => {
     const userRewardBal = new BigNumber(ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3))
-    const claimAmt = new BigNumber(ethers.utils.formatUnits(claiminputamount,9))
+    const claimAmt = new BigNumber(ethers.utils.formatUnits(claiminputamount,5))
     console.log(claimAmt.c.toString())
     
     
