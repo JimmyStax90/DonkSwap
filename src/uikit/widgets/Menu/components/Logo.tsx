@@ -9,8 +9,8 @@ import '@szhsin/react-menu/dist/index.css'
 const MenuLinks = [
   ['Home', '#home'],
   ['DonkSwap', '#swap'],
-  ['DonkSeal', '#seal'],
-  ['Donkey NFTs', '#nft'],
+  ['DonkSeal', '#donk-seal'],
+  ['Donkey NFTs', '#donk-nft'],
   ['Donkey King Casino', '#casino'],
   // ['NFTs (soon)', '#soon'],
   // ['Pools', '#soon'],
