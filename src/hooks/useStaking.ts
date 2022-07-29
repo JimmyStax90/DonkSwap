@@ -4,7 +4,9 @@ import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
 import { BigNumber } from 'ethers';
 import { useCallback, useMemo } from 'react';
 
-const contractAddress = "0x8cfE605A4Cebef5c9C69B167d9A99B21BBD53C72";
+// const contractAddress = "0x8cfE605A4Cebef5c9C69B167d9A99B21BBD53C72";
+const contractAddress = "0x64b6E9dFE91902D1154F54edD9b965D34282606d";
+// const contractAddress2 = "0xEd67e38497dA0fD6829ea03a9ED5E48391E5448F";
 
 const useStaking = () => {
     const { account } = useActiveWeb3React()
@@ -52,7 +54,7 @@ const useStaking = () => {
                 stake,
                 restake, 
                 withdraw, 
-                claimReward 
+                claimReward
             } 
             // console.log({
             //     stakedbalance: value.stakedbalance?.toString(),

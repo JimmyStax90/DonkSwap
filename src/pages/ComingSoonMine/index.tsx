@@ -49,7 +49,6 @@ export default function Mine() {
   /*======================= ClaimReward ===================================*/
   /*======================= ClaimReward ===================================*/
   /*======================= ClaimReward ===================================*/
-
   const ClaimInput = (e) => {
     setErrorMessageclaim('');
     const amt = new BigNumber(e.target.value,10);
@@ -84,7 +83,7 @@ export default function Mine() {
   const handleClickClaim = () => {
     const userRewardBal = new BigNumber(ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3))
     const claimAmt = new BigNumber(ethers.utils.formatUnits(claiminputamount,5))
-    console.log(claimAmt.c.toString())
+    // console.log(claimAmt.c.toString())
     
     
     if(claimAmt.gt(userRewardBal)) {
