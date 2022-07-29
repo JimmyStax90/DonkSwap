@@ -10,7 +10,7 @@ const MenuLinks = [
   ['Home', '#home'],
   ['DonkSwap', '#swap'],
   ['DonkSeal', '#donk-seal'],
-  ['Donkey NFTs', '#donk-nft'],
+  ['Donkey NFTs', 'https://www.donkswapnfts.com','newtab'],
   ['Donkey King Casino', '#casino'],
   // ['NFTs (soon)', '#soon'],
   // ['Pools', '#soon'],
