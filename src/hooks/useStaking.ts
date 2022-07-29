@@ -5,8 +5,7 @@ import { BigNumber } from 'ethers';
 import { useCallback, useMemo } from 'react';
 
 // const contractAddress = "0x8cfE605A4Cebef5c9C69B167d9A99B21BBD53C72";
-const contractAddress = "0x64b6E9dFE91902D1154F54edD9b965D34282606d";
-// const contractAddress2 = "0xEd67e38497dA0fD6829ea03a9ED5E48391E5448F";
+const contractAddress = "0x491B35572c4a797a81b81C1698B4589cb14250b4";
 
 const useStaking = () => {
     const { account } = useActiveWeb3React()
