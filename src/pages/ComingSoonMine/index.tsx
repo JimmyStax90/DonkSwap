@@ -18,14 +18,16 @@ export default function Mine() {
   const [errormessagewithdraw, setErrorMessagewithdraw] = useState('')
   const [errormessagedeposit, setErrorMessagedeposit] = useState('')
   const [errormessageclaim, setErrorMessageclaim] = useState('')
-  const { stakedbalance, earnedBalance, totalStakedBalance, totalRewards, rewardRate, stake,restake, withdraw, claimReward } = useStaking();
+  const { stakedbalance, earnedBalance, totalStakedBalance, totalRewards, rewardRate, lpDstBalance, stake,restake, withdraw, claimReward } = useStaking();
   const { allowance, approve, balance, totalSupply } = useERC20();
   const total = Number(ethers.utils.formatEther(totalStakedBalance?totalStakedBalance:0));
   const tReward = Number(ethers.utils.formatUnits(totalRewards?totalRewards:0,9))
   const rate = Number(ethers.utils.formatUnits(rewardRate?rewardRate:0,9));
   const totalLPSupply = Number(ethers.utils.formatEther(totalSupply?totalSupply:0))
+  const lpDstBal = Number(ethers.utils.formatUnits(lpDstBalance?lpDstBalance:0,9))
   const bal = Number(ethers.utils.formatEther(balance?balance:0))
-  const apr = (((rate*86400*365)/((2*tReward*total)/totalLPSupply))*100).toFixed(2)
+  console.log({rate,lpDstBal,total,totalLPSupply});
+  const apr = (((rate*86400*365)/((2*lpDstBal*total)/totalLPSupply))*100).toFixed(2)
   // console.log('rate->',rate, ' balance of 0x71-> ', bal,' total staked balance-> ', total, ' totalLPSupply-> ', totalLPSupply)
   
   // const apr = ethers.utils.formatUnits(calcapr.toString(),9).slice(0,ethers.utils.formatUnits(calcapr.toString(),9).indexOf('.')+3)
