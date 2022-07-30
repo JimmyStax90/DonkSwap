@@ -1,16 +1,20 @@
 import { useActiveWeb3React } from './index'
-import { useStakingContract } from './useContract'
+import { useStakingContract, useERC20Contract } from './useContract'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
 import { BigNumber } from 'ethers';
 import { useCallback, useMemo } from 'react';
 
 // const contractAddress = "0x8cfE605A4Cebef5c9C69B167d9A99B21BBD53C72";
 const contractAddress = "0x491B35572c4a797a81b81C1698B4589cb14250b4";
+const dstContractAddress = "0x3969Fe107bAe2537cb58047159a83C33dfbD73f9";
+const dstLpContractAddress = "0x7123431162c1efF257578D1574014e5305Eb7bd4";
 
 const useStaking = () => {
     const { account } = useActiveWeb3React()
 
     const stakingContract = useStakingContract(contractAddress)
+
+    const erc20DstContract = useERC20Contract(dstContractAddress)
 
     const stakedbalance = useSingleCallResult(stakingContract, 'getStakedBalanceOfUser', [account]);
     const earnedBalance = useSingleCallResult(stakingContract, 'earned', [account]);
@@ -18,6 +22,7 @@ const useStaking = () => {
     const totalStakedBalance = useSingleCallResult(stakingContract, 'totalSupply', []);
     const totalRewards = useSingleCallResult(stakingContract, 'totalRewards', []);
     const rewardRate = useSingleCallResult(stakingContract,'rewardRate',[]);
+    const lpDstBalance : BigNumber = useSingleCallResult(erc20DstContract, 'balanceOf',[dstLpContractAddress])?.result?.[0];
 
     // console.log("useStaking apy => ", apy);
 
@@ -50,6 +55,7 @@ const useStaking = () => {
                 totalStakedBalance: totalStakedBalance?.result?.[0],
                 totalRewards: totalRewards?.result?.[0], 
                 rewardRate: rewardRate?.result?.[0],
+                lpDstBalance,
                 stake,
                 restake, 
                 withdraw, 
