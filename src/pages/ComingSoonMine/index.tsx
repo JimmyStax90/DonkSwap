@@ -112,7 +112,7 @@ export default function Mine() {
       approveBtnRef.current.classList.toggle('shake');
     } else {
       const userRewardBal = new BigNumber(ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3))
-      setClaimInputAmount((userRewardBal.times(percent/100)).toFixed(0));
+      setClaimInputAmount(Math.floor((userRewardBal.times(percent/100)).toFixed(0)));
     }
 
     if(maxDropdownContentClaimRef.current && overlayRef.current) {
