@@ -14,7 +14,7 @@ export default function Mine() {
   const { account } = useActiveWeb3React();
   const [depositinputamount, setDepositInputAmount] = useState<string>('');
   const [withdrawalinputamount, setWithdrawalInputAmount] = useState<string>('');
-  const [claiminputamount, setClaimInputAmount] = useState<string>('');
+  const [claiminputamount, setClaimInputAmount] = useState<string>("0");
   const [errormessagewithdraw, setErrorMessagewithdraw] = useState('')
   const [errormessagedeposit, setErrorMessagedeposit] = useState('')
   const [errormessageclaim, setErrorMessageclaim] = useState('')
@@ -112,7 +112,7 @@ export default function Mine() {
       approveBtnRef.current.classList.toggle('shake');
     } else {
       const userRewardBal = new BigNumber(ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3))
-      setClaimInputAmount(Math.floor((userRewardBal.times(percent/100)).toFixed(0)));
+      setClaimInputAmount((Math.floor(parseInt((userRewardBal.times(percent/100)).toFixed(0))).toString()));
     }
 
     if(maxDropdownContentClaimRef.current && overlayRef.current) {
