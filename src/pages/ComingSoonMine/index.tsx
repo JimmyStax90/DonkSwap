@@ -327,7 +327,7 @@ export default function Mine() {
             <div className="balance-and-display-container">
               <h3 className="stake-title">My Earned DST</h3>
               <div className="stake-stat-display">
-                <p className="txt-amount">{earnedBalance ? ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3) : 1000000000000000}</p>
+                <p className="txt-amount">{earnedBalance ? ethers.utils.formatUnits(earnedBalance,9).slice(0, ethers.utils.formatUnits(earnedBalance,9).indexOf(".")+3) : 0}</p>
               </div>
             </div>
           </div>
