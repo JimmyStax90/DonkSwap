@@ -1,0 +1,85 @@
+{
+  "name": "DonkSwap Menu",
+  "logoURI": "https://um2110-t.renderforest.com/u14686203/visuals/thumb_03d8574d-7b0c-4a87-8a81-680f80a6d7f2.jpg",
+  "keywords": ["donkswap", "donk", "swap"],
+  "timestamp": "2020-09-01T00:00:00+00:00",
+  "version": {
+    "major": 2,
+    "minor": 10,
+    "patch": 0
+  },
+  "tokens": [
+    {
+      "address": "0x3969Fe107bAe2537cb58047159a83C33dfbD73f9", 
+      "chainId": 56,
+      "name": "DonkSwap Token",
+      "symbol": "DST",
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/donkeyking_32.png"
+    },
+    {
+      "name": "CZodiac Token",
+      "symbol": "CZF",
+      "address": "0x7c1608C004F20c3520f70b924E2BfeF092dA0043",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/XJfSDMX/czf-logo.png"
+    },
+    {
+      "name": "CZUSD Token",
+      "symbol": "CZUSD",
+      "address": "0xE68b79e51bf826534Ff37AA9CeE71a3842ee9c70",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/Z6k35k5/CZUSD.png"
+    },
+    {
+      "name": "CryoGen Token",
+      "symbol": "CRYOGEN",
+      "address": "0x6a73a99fac60c265863307c5a40abf32f0a040ac",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/GHM8K8F/Cryogen.png"
+    },
+    {
+      "name": "Crypto Jackpot",
+      "symbol": "CJP",
+      "address": "0xeb78dfd268cee4d50cfa3228b4d112aba7c105bc",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/xjrYngM/Crypto-Jackpot-removebg-preview.png"
+    },
+    {
+      "name": "Flappy Doge",
+      "symbol": "FLPD",
+      "address": "0x80dc7bd1328f5e48e8e22884169ba46f9279201b",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/Th8D0Xf/photo1642553910-removebg-preview.png"
+    },
+    {
+      "name": "InfiniteOne Token",
+      "symbol": "IF1",
+      "address": "0xfcac1a3ede7b55cc51e3ebff2885a67fbfe01a1a",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://DONKSWAP.COM/images/coins/if1.png"
+    },
+    {
+      "name": "BUSD Token",
+      "symbol": "BUSD",
+      "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://DONKSWAP.COM/images/coins/0xe9e7cea3dedca5984780bafc599bd69add087d56.png"
+    },  
+    {
+      "name": "Wrapped BNB",
+      "symbol": "WBNB",
+      "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://donkswap.com/images/coins/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c.png"
+    }
+  ]
+}

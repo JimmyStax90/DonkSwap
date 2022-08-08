@@ -1,0 +1,418 @@
+.floating-box{
+    width: 90%;
+    height: 80%;
+    border-radius: 10px;
+    position: absolute;
+    z-index: -1;
+    box-shadow: inset 2px 1px 18px rgba(140, 76, 170, 0.279);
+}
+
+.overlay{
+    overflow: hidden;
+    display: none;
+    background-color: #000;
+    opacity: .4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+}
+.stake-stat-display p {
+    font-size: 0.8rem;
+  }
+
+.stake-body-whole{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 10;
+}
+.stake-stat-second-level{
+    width: 100%; 
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.stake-stats{
+    margin-bottom: 4rem;
+    width: 56.25rem;
+    height: 250px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction:column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.404);
+    text-align: center;
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #363738, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3b3d3f, #232526);
+}
+.stake-stats .header {
+    font-size: 1.25rem;
+}
+.stake-stat-display{
+    width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding-left: 10px;
+    box-shadow: inset 2px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.left-display, .right-display {
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+}
+
+.balance-and-display-container{
+    width: 200px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: inherit;  
+}
+
+.apy-stat-display-container {
+    width: 9rem;
+    aspect-ratio: 1/1;
+}
+
+.apy-stat-display{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: inset 2px 1px 10px rgba(0, 0, 0, 0.5);
+}
+.apy-box{
+    height: 70%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+}
+.apy-box h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #8d6caa;
+}
+.apy-stat-display p {
+    font-size: 30px;
+    color: rgb(188, 188, 188);
+}
+.stake-stat-display p{
+    font-size: 0.8rem;
+    color: rgb(188, 188, 188);
+}
+
+.stake-body{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+}
+.stake-form{
+    width: 30rem;
+    height: 220px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.404);
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526);
+}
+.stake-title{
+    font-weight: 600;
+    color: #8d6caa;
+}
+
+.input-div{
+    position: relative;
+    width: 72%;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.percent-symbol {
+    position: absolute;
+    color: black;
+    font-size: 1.5rem;
+    right: 3rem;
+}
+.deposit-input{
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 8px;
+    background-color: none;
+    box-shadow: inset 2px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.input-container{
+    position: relative;
+    padding-top: .9rem;
+    width: 87%;
+    margin-top: -.9rem;
+    display: grid;
+}
+
+.user-bal{
+    color: white;
+    font-weight: lighter;
+    font-size: .8rem;
+    position: absolute;
+    top: 0px;
+    justify-self: flex-end;
+}
+
+.max-dropdown {
+    position: absolute;
+    bottom: 25%;
+    right: 2%;
+}
+
+.max-dropdown-content {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    padding: 0 5px;
+    line-height: 1.5;
+    margin-top: -4px;
+    margin-left: -5px;
+    background-color: hsla(0, 0%, 100%,.7);
+    z-index: 9999;
+    overflow-y: auto;
+    overflow-x: visible;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.max-btn {
+    font-weight: bold;
+    color: #753fa4;
+    cursor: pointer;
+    user-select: none;
+}
+
+.max-btn:hover:not(.max-btn-disabled) {
+    opacity: 75%;
+}
+
+.max-btn-disabled {
+    color: #414345;
+    cursor: default;
+}
+
+.withdrawal-input{
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 8px;
+    background-color: none;
+    box-shadow: inset 2px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.scale-btn {
+    height: 30px !important;
+    padding: 0 12px !important;
+}
+
+.scale-btn-container {
+    margin-top: 5px !important;
+}
+
+.stake-btn{
+    width: 150px;
+    height: 35px;
+    border-radius: 10px;
+    font-size: .9rem;
+    color: white;
+    background-color: #753fa4;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.178);
+    transition: none;
+}
+button:disabled {
+    cursor: default !important;
+    background-color:#414345;
+}
+.stake-btn:hover:enabled{
+    cursor: pointer;
+    background-color: #8d6caa;
+}
+.stake-btn:active:enabled{
+    transform: scale(.98);
+}
+.shake{
+    animation: shake .75s;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) scale(1.1) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) scale(1.15) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) scale(1.2) rotate(1deg); }
+    30% { transform: translate(3px, 2px) scale(1.2) rotate(0deg); }
+    40% { transform: translate(1px, -1px) scale(1.2) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) scale(1.2) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) scale(1.22) rotate(0deg); }
+    70% { transform: translate(3px, 1px) scale(1.2) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) scale(1.15) rotate(1deg); }
+    90% { transform: translate(1px, 2px) scale(1.1) rotate(0deg); }
+    100% { transform: translate(1px, -2px) scale(1) rotate(-1deg); }
+}
+
+.increment-div{
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.increment-plus{
+    width: 30px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    color: white;
+    background-color: #753fa4;
+}
+.increment-plus:hover:enabled{
+    cursor: pointer;
+    background-color: #8d6caa;
+}
+.increment-minus{
+    width: 30px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    color: white;
+    background-color: #753fa4;
+}
+.increment-minus:hover:enabled{
+    cursor: pointer;
+    background-color: #8d6caa;
+}
+
+.errorMsg{
+    font-size: .8rem;
+    margin-top: -1.5rem;
+}
+
+@media (max-width: 1136px) {
+    .stake-body {
+        flex-direction: column;
+    }
+
+    .stake-form {
+        margin: 10px;
+        height: 150px;
+    }
+
+    .stake-stats {
+        margin-bottom: 1rem;
+    }
+
+    .floating-box {
+        height: 87%;
+    }
+
+    .scale-btn {
+        height: 24px !important;
+        padding: 0 10px !important;
+    }
+    
+    .scale-btn-container {
+        margin-top: 0px !important;
+    }
+}
+
+@media (max-width: 944px) {
+    .stake-stats {
+        width: 100%;
+    }
+
+    .left-display, .right-display {
+        flex-direction: column;
+        align-items: center;
+        width: 12rem;
+    }
+
+    .balance-and-display-container {
+        width: 5rem;
+    }
+
+    .stake-stat-display {
+        margin-top: .5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .floating-box {
+        width: 98%;
+        height: 88%;
+    }
+}
+
+@media (max-width: 550px) {
+    .left-display, .right-display {
+        width: 8rem;
+    }
+    .stake-stat-display p{
+        font-size: 0.6rem;
+        color: rgb(188, 188, 188);
+    }
+    .stake-stat-display {
+        width: 7.5rem;
+        margin-top: .5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stake-stats .stake-title {
+        font-size: .8rem;
+    }
+
+    .apy-box .stake-title {
+        font-size: 1.2rem;
+    }
+
+    .stake-form {
+        width: 20rem;
+    }
+
+    .user-bal{
+        font-size: .6rem;
+    }
+
+    .input-container{
+        padding-top: .7rem;
+        margin-top: -.7rem;
+    }
+
+    .errorMsg{
+        font-size: .6rem;
+        margin-top: -.8rem;
+    }
+}
