@@ -5,7 +5,7 @@ import { BigNumber } from 'ethers';
 import { useCallback, useMemo } from 'react';
 
 // const contractAddress = "0x8cfE605A4Cebef5c9C69B167d9A99B21BBD53C72";
-const contractAddress = "0xA1eeA9d5A596D88C87b14Ce28acB5eFEc9efC046";
+const contractAddress = "0x348A9161EF603A218A0eA77a3398eFA4725b423a";
 const dstContractAddress = "0x3969Fe107bAe2537cb58047159a83C33dfbD73f9";
 const dstLpContractAddress = "0x7123431162c1efF257578D1574014e5305Eb7bd4";
 
