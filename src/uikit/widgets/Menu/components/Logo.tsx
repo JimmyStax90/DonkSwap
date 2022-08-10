@@ -10,14 +10,15 @@ const MenuLinks = [
   ['Home', '#home'],
   ['DonkSwap', '#swap'],
   ['DonkSeal', '#donk-seal'],
-  ['Donkey NFTs', 'https://www.donkswapnfts.com','newtab'],
+  ['Donkey NFTs', 'https://www.donkswapnfts.com/'],
+  ['NFT Staking', 'https://stakenft.donkswap.com/'],
+  ['Donkey Mines', '#mine'],
   ['Donkey King Casino', '#casino'],
   // ['NFTs (soon)', '#soon'],
   // ['Pools', '#soon'],
   // ['Lottery', '#soon'],
-  ['Donkey Mines', '#mine'],
-  ['More...', 'https://linktr.ee/DonkeyKingFinance','newtab'],
-  // ['March Madness', '#march-madness'],
+  
+ 
 ]
 
 interface Props {
