@@ -6,7 +6,7 @@ import { BigNumber, ethers } from 'ethers';
 // const contractAddress = "0x3969Fe107bAe2537cb58047159a83C33dfbD73f9";
 const contractAddress = "0x7123431162c1efF257578D1574014e5305Eb7bd4";
 // const stakingAddress = "0x8cfE605A4Cebef5c9C69B167d9A99B21BBD53C72";
-const stakingAddress = "0x84fc1C78706871b31Df47888E3700450fBbDc141";
+const stakingAddress = "0x705dA527fA74270971F3f2b432825217f62b7E5E";
 
 const useERC20 = () => {
     const { account } = useActiveWeb3React()
