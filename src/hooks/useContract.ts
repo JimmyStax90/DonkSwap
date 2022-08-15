@@ -10,7 +10,7 @@ import WETH_ABI from '../constants/abis/weth.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
-import STAKING_ABI from "../abis/Staking.json"
+import MASTERCHEF_ABI from "../abis/MasterChef.json"
 
 // returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
@@ -66,8 +66,8 @@ export function useMulticallContract(): Contract | null {
   return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
 }
 
-export function useStakingContract(stakingAddress?: string): Contract | null {
-  return useContract(stakingAddress, STAKING_ABI, true)
+export function useMasterchefContract(masterchefAddress?: string): Contract | null {
+  return useContract(masterchefAddress, MASTERCHEF_ABI, true)
 }
 export function useERC20Contract(erc20Address?: string): Contract | null {
   return useContract(erc20Address, ERC20_ABI, true)

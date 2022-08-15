@@ -7,7 +7,7 @@ import { BigNumber, ethers } from 'ethers';
 const contractAddress = "0x7123431162c1efF257578D1574014e5305Eb7bd4";
 
 // const stakingAddress = "0x8cfE605A4Cebef5c9C69B167d9A99B21BBD53C72";
-const stakingAddress = "0x3f51810e9A449A95Ef4fC52C956BcB62a291D3AD";
+const masterchefAddress = "0x029FFE06eE1CfddE477BD88c3D42289CbdDe1dB9";
 
 
 const useERC20 = () => {
@@ -16,9 +16,9 @@ const useERC20 = () => {
     const erc20Contract = useERC20Contract(contractAddress)
     // console.log("erc20----->", erc20Contract);
 
-    const allowance: BigNumber = useSingleCallResult(erc20Contract, 'allowance', [account, stakingAddress])?.result?.[0];
+    const allowance: BigNumber = useSingleCallResult(erc20Contract, 'allowance', [account, masterchefAddress])?.result?.[0];
     const approve = async () => {
-        const ret = await erc20Contract.approve(stakingAddress, ethers.constants.MaxUint256)
+        const ret = await erc20Contract.approve(masterchefAddress, ethers.constants.MaxUint256)
     }
     // console.log("ERC20 CONTRACT allowance => ", allowance?.toString())
     const balance : BigNumber = useSingleCallResult(erc20Contract, 'balanceOf',[account])?.result?.[0];
