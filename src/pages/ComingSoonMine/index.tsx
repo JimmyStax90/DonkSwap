@@ -9,6 +9,7 @@ import ConnectWalletButton from 'components/ConnectWalletButton';
 import Slider from "../../components/Slider";
 import { Button, Flex, Text } from '../../uikit';
 import useI18n from 'hooks/useI18n';
+import {tokenAmtToShortString, weiToShortString, toShortString} from "../../utils/bnDisplay";
 import { parseUnits, parseEther } from "ethers/lib/utils";
 
 const lpDstBnbContractAddress = "0x7123431162c1efF257578D1574014e5305Eb7bd4";
@@ -253,14 +254,14 @@ export default function Mine() {
             <div className="balance-and-display-container">
               <h3 className="stake-title">My Staked Balance</h3>
               <div className="stake-stat-display">
-              <p>{stakedbalance ? ethers.utils.formatEther(stakedbalance).slice(0, ethers.utils.formatEther(stakedbalance).indexOf(".")+3) : 0}</p>
+              <p>{stakedbalance ? weiToShortString(stakedbalance,3) : 0}</p>
               </div>
             </div>
 
             <div className="balance-and-display-container">
               <h3 className="stake-title">My Pending DST</h3>
               <div className="stake-stat-display">
-                <p className="txt-amount">{pendingDst ? ethers.utils.formatUnits(pendingDst,9).slice(0, ethers.utils.formatUnits(pendingDst,9).indexOf(".")+3) : 0}</p>
+                <p className="txt-amount">{pendingDst ? tokenAmtToShortString(pendingDst,9,3) : 0}</p>
               </div>
             </div>
           </div>
@@ -278,14 +279,14 @@ export default function Mine() {
           <div className="balance-and-display-container">
               <h3 className="stake-title">Total Staked</h3>
               <div className="stake-stat-display">
-                <p className="txt-amount">{totalLpStaked ? ethers.utils.formatEther(totalLpStaked) : 0}</p>
+                <p className="txt-amount">{totalLpStaked ? weiToShortString(totalLpStaked,3) : 0}</p>
               </div>
             </div>
 
             <div className="balance-and-display-container">
               <h3 className="stake-title">DST Per Day</h3>
               <div className="stake-stat-display">
-                <p className="txt-amount">{rewardRate ? ethers.utils.formatUnits(rewardRate.mul(86400),9).slice(0, ethers.utils.formatUnits(rewardRate.mul(86400),9).indexOf(".")+3) : 0}</p>
+                <p className="txt-amount">{rewardRate ? tokenAmtToShortString(rewardRate.mul(86400),9,3) : 0}</p>
               </div>
             </div>
           </div>
