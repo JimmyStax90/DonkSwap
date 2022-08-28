@@ -164,7 +164,7 @@ const HomePage = (props) => {
                             <a href="/#/swap">
                                 <button className="quickgo-btn" id="get-dst" >Get $DST</button>
                             </a>
-                            <a href="https://drive.google.com/file/d/1tuG_bVvpGjvPHbmahLKlm5cJgVX3j87F/view?usp=sharing">
+                            <a href="https://drive.google.com/file/d/1xGvJLFDxRwGYVTK2Uqp3lQFUlSWwOYrw/view?usp=sharing">
                                 <button className="quickgo-btn" id="get-white-paper">White Paper</button>
                             </a>
                             <a href="https://bscscan.com/token/0x3969fe107bae2537cb58047159a83c33dfbd73f9" target="_blank">
