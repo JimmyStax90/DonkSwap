@@ -59,7 +59,7 @@ export default function DonkSeal() {
             coinWebsite: 'https://donk.finance',
             auditFile: 'https://github.com/Watchtower-WTW/Public_Audits/blob/main/DONKSWAP%20Smart%20Contract%20Security%20Audit%20(2).pdf',
             auditLogo: 'https://i.ibb.co/jHTbY4v/Watchtower.jpg',
-            summary:'DonkSwap is the official exchange of Donkey King Finance. The goal of DonkSwap is to bring back confidence to the crypto space as only rug-proof projects will be allowed to list. DonkSwap Token is the official currency of Donkey King Finance. $DST will provide financial support and stability to the project and each of its entities. To date, Donkey King Finance and their subsidiary, DonkSwap, have processed over $1 million in transactions since launching on September 1, 2021.'
+            summary:'DonkSwap is the official exchange of Donkey King Entertainment Group. The goal of DonkSwap is to bring back confidence to the crypto space as only rug-proof projects will be allowed to list. DonkSwap Token is the official currency of Donkey King Entertainment Group. $DST will provide financial support and stability to the project and each of its entities. To date, Donkey King Entertainment Group and their subsidiary, DonkSwap, have processed over $3 million in transactions since launching on September 1, 2021. Donkey King Casino will be fully launching by December 2022. A free version of the casino is available as of November 2022 via www.DonkeyKingEG.com.'
           },
           {
             _id: '0x7c1608C004F20c3520f70b924E2BfeF092dA0043',
