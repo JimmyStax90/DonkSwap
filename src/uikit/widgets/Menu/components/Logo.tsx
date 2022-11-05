@@ -13,7 +13,7 @@ const MenuLinks = [
   ['Donkey NFTs', 'https://www.donkswapnfts.com/'],
   ['NFT Staking', 'https://stakenft.donkswap.com/'],
   ['Donkey Mines', '#mine'],
-  ['Donkey King Casino', '#casino'],
+  ['Donkey King Casino', 'https://www.donkeykingeg.com/'],
   // ['NFTs (soon)', '#soon'],
   // ['Pools', '#soon'],
   // ['Lottery', '#soon'],
